@@ -64,7 +64,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         String urlPost = Utils.main_url;
         urlPost = urlPost.concat("signUpUser");
-        Intent intent = new Intent(SignUpActivity.this, NavigationDrawerActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, UserProfileActivity.class);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlPost, response -> {
 

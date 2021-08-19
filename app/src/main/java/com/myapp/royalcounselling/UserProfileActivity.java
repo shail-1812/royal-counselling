@@ -57,7 +57,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private void loadData(String cit, String sta, String gra, String boa, String institute, String gen, String email) {
 
         String urlPost = Utils.main_url;
-        urlPost = urlPost.concat("something");
+        urlPost = urlPost.concat("signUpUserProfile");
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlPost, response -> {
 
@@ -128,7 +128,7 @@ public class UserProfileActivity extends AppCompatActivity {
         };
 
         VolleySingleton.getInstance(UserProfileActivity.this).addToRequestQueue(stringRequest);
-        Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
+        Intent intent = new Intent(UserProfileActivity.this, NavigationDrawerActivity.class);
         startActivity(intent);
 
     }
