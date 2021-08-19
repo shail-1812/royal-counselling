@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 
@@ -88,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
             } catch (Exception e) {
+                progressDialog.dismiss();
                 SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.remove("KEY_EMAIL");
@@ -97,11 +99,11 @@ public class LoginActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }, error -> {
-
+            progressDialog.dismiss();
             Toast invalid_email_id;
             invalid_email_id = Toast.makeText(LoginActivity.this, "Invalid Email Id", Toast.LENGTH_LONG);
             invalid_email_id.show();
-     //       Log.e("Invalid Email", error.getMessage());
+            //       Log.e("Invalid Email", error.getMessage());
 
         }) {
             @Override
@@ -113,6 +115,8 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         VolleySingleton.getInstance(LoginActivity.this).addToRequestQueue(stringRequest);
 
     }

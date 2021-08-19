@@ -1,7 +1,9 @@
 package com.myapp.royalcounselling;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,8 +23,11 @@ public class GetSeminarsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_seminars);
-        String urlPost = Utils.main_url;
-        urlPost = urlPost.concat("getActiveSeminarList");
+        SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
+        String email = sharedPreferences.getString("KEY_EMAIL", "");
+        String urlPost = Utils.main_url+"getActiveSeminarListForRegisteration/"+email;
+
+        Toast.makeText(GetSeminarsActivity.this, urlPost, Toast.LENGTH_LONG).show();
         Seminar seminar = new Seminar();
         Bundle bundle = new Bundle();
         DisplaySeminarFragment displaySeminarFragment = new DisplaySeminarFragment();
@@ -89,8 +94,6 @@ public class GetSeminarsActivity extends AppCompatActivity {
 
 
         };
-
-
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(
                 0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         VolleySingleton.getInstance(GetSeminarsActivity.this).addToRequestQueue(stringRequest);

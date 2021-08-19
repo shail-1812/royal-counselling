@@ -1,7 +1,9 @@
 package com.myapp.royalcounselling;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,8 +18,11 @@ public class GetSeminars extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String urlPost = Utils.main_url;
-        urlPost = urlPost.concat("getActiveSeminarList");
+        SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
+        String email = sharedPreferences.getString("KEY_EMAIL", "");
+        String urlPost = Utils.main_url+"getActiveSeminarListForRegisteration/"+email;
+
+        Toast.makeText(GetSeminars.this, urlPost, Toast.LENGTH_LONG).show();
         Seminar seminar = new Seminar();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlPost, response -> {

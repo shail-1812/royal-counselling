@@ -1,18 +1,21 @@
 package com.myapp.royalcounselling.ui;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.myapp.royalcounselling.GetSeminarsActivity;
 import com.myapp.royalcounselling.MySeminarAdapter;
 import com.myapp.royalcounselling.R;
 import com.myapp.royalcounselling.Seminar;
@@ -23,6 +26,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class DisplaySeminarFragment extends Fragment {
 
@@ -36,8 +41,11 @@ public class DisplaySeminarFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_display_seminar, container, false);
-        String urlPost = Utils.main_url;
-        urlPost = urlPost.concat("getActiveSeminarList");
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MYAPP", MODE_PRIVATE);
+        String email = sharedPreferences.getString("KEY_EMAIL", "");
+        String urlPost = Utils.main_url+"getActiveSeminarListForRegisteration/"+email;
+
+        Toast.makeText(getActivity(), urlPost, Toast.LENGTH_LONG).show();
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading");
         progressDialog.show();
