@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
-import com.myapp.royalcounselling.GetSeminarsActivity;
 import com.myapp.royalcounselling.MySeminarAdapter;
 import com.myapp.royalcounselling.R;
 import com.myapp.royalcounselling.Seminar;

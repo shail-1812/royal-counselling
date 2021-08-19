@@ -118,19 +118,16 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==11){
-                if(data != null) {
-                    Uri uri = data.getData();
-                    imageDP.setImageURI(uri);
-                    imageDP.setTag("new");
-                }
-                else{
-                    imageDP.setImageResource(R.drawable.logo);
-                    imageDP.setTag("default");
-                }
+        if(requestCode==11) {
+            if (data != null) {
+                Uri uri = data.getData();
+                imageDP.setImageURI(uri);
+                imageDP.setTag("new");
+            }
         }
         else if(requestCode==12){
             if(data != null){
@@ -230,7 +227,7 @@ public class UserProfileActivity extends AppCompatActivity {
         };
         volleyMultipartRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(UserProfileActivity.this).add(volleyMultipartRequest);
-        Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
+        Intent intent = new Intent(UserProfileActivity.this, NavigationDrawerActivity.class);
         startActivity(intent);
 
     }
