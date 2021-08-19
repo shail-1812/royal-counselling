@@ -1,14 +1,21 @@
 package com.myapp.royalcounselling;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -19,6 +26,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -37,7 +46,6 @@ public class SignUpActivity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.edt_sign_up_phone_number);
         signUp = findViewById(R.id.btn_sign_up_register);
 
-
         signUp.setOnClickListener(v -> {
 
             String fn = firstName.getText().toString();
@@ -51,9 +59,10 @@ public class SignUpActivity extends AppCompatActivity {
             editor.putString("KEY_PASSWORD", password.getText().toString());
             editor.apply();
             loadData(fn, ln, em, pass, phone);
-        });
 
+        });
     }
+
 
 
     private void loadData(String fn, String ln, String em, String pass, String phone) {
@@ -64,7 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         String urlPost = Utils.main_url;
         urlPost = urlPost.concat("signUpUser");
-        Intent intent = new Intent(SignUpActivity.this, NavigationDrawerActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, UserProfileActivity.class);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlPost, response -> {
 
