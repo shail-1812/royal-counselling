@@ -47,13 +47,12 @@ public class MySeminarAdapter extends BaseAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = layoutInflater.inflate(R.layout.raw_seminar_list, null);
         TextView seminarName = convertView.findViewById(R.id.tv_seminar_name_card);
-        TextView name = convertView.findViewById(R.id.tv_seminar_name);
-        TextView description = convertView.findViewById(R.id.tv_seminar_description);
-        TextView type = convertView.findViewById(R.id.tv_seminar_type);
+        TextView seminarDate = convertView.findViewById(R.id.tv_seminar_date_card);
 
         ImageView seminarImage = convertView.findViewById(R.id.img_seminar);
         seminarName.setText(seminarArrayList.get(position).getSeminarName());
         seminarImage.setImageResource(blurImages[1]);
+        seminarDate.setText(seminarArrayList.get(position).getSeminarStart());
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +73,7 @@ public class MySeminarAdapter extends BaseAdapter {
                 i.putExtra("seminarType", seminarType);
                 i.putExtra("seminarStart", seminarStart);
                 i.putExtra("seminarEnd", seminarEnd);
+                i.putExtra("seminarId", seminarID);
                 context.startActivity(i);
             }
         });

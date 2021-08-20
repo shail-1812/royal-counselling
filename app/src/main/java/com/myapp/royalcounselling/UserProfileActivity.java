@@ -210,6 +210,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 params.put("instituteName",institutename);
                 params.put("gender",gender);
                 params.put("board",board);
+                params.put("grade", grade);
                 params.put("emailID",emailID);
                 params.put("imageDesc", (String) imageDP.getTag());
                 return params;
