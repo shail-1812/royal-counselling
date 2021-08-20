@@ -28,17 +28,17 @@
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
-        <GridView
-            android:id="@+id/grid"
+        <ListView
+            android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:horizontalSpacing="5dp"
             android:numColumns="auto_fit"
-            android:verticalSpacing="10dp" />
+            android:verticalSpacing="7dp" />
 
     </LinearLayout>
 

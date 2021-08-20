@@ -16,7 +16,7 @@ public class MySeminarAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<Seminar> seminarArrayList;
-    int[] blurImages = {R.drawable.image_blur};
+    int[] blurImages = {R.drawable.image_blur, R.drawable.blurred};
 
     public MySeminarAdapter(Context context, ArrayList<Seminar> seminarArrayList) {
         this.context = context;
@@ -53,7 +53,7 @@ public class MySeminarAdapter extends BaseAdapter {
 
         ImageView seminarImage = convertView.findViewById(R.id.img_seminar);
         seminarName.setText(seminarArrayList.get(position).getSeminarName());
-        seminarImage.setImageResource(blurImages[0]);
+        seminarImage.setImageResource(blurImages[1]);
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

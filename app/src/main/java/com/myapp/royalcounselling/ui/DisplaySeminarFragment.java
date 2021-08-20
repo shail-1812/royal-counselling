@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -31,8 +32,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class DisplaySeminarFragment extends Fragment {
 
 
-    GridView gridView;
     ArrayList<Seminar> seminarsList = new ArrayList<>();
+    ListView listView;
 
 
     @Override
@@ -42,7 +43,7 @@ public class DisplaySeminarFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_display_seminar, container, false);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email = sharedPreferences.getString("KEY_EMAIL", "");
-        String urlPost = Utils.main_url+"getActiveSeminarListForRegisteration/"+email;
+        String urlPost = Utils.main_url + "getActiveSeminarListForRegisteration/" + email;
 
         Toast.makeText(getActivity(), urlPost, Toast.LENGTH_LONG).show();
         ProgressDialog progressDialog = new ProgressDialog(getContext());
@@ -98,11 +99,13 @@ public class DisplaySeminarFragment extends Fragment {
                     seminarsList.add(seminar);
                 }
                 //Toast.makeText(getActivity(),  String.valueOf(seminarsList.get(0).getSeminarName()), Toast.LENGTH_LONG).show();
-                gridView = rootView.findViewById(R.id.grid);
+//                gridView = rootView.findViewById(R.id.grid);
+                listView = rootView.findViewById(R.id.list);
                 MySeminarAdapter mySeminarAdapter = new MySeminarAdapter(getContext(), seminarsList);
                 //String value = String.valueOf(seminarsList.size());
                 //Toast.makeText(getContext(), String.valueOf(seminarsList.size()), Toast.LENGTH_LONG).show();
-                gridView.setAdapter(mySeminarAdapter);
+                //gridView.setAdapter(mySeminarAdapter);
+                listView.setAdapter(mySeminarAdapter);
 
                 //FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 //fragmentTransaction.replace(R.id.frame, displaySeminarFragment);
