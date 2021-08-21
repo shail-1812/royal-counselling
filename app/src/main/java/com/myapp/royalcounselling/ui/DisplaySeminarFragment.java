@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-
+import 	java.text.SimpleDateFormat;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
@@ -76,15 +76,17 @@ public class DisplaySeminarFragment extends Fragment {
                     JSONObject object = jsonArray.getJSONObject(i);
                     seminarID = (String.valueOf(object.getString("seminarID")));
                     seminarName = (String.valueOf(object.getString("seminarName")));
-                    seminarRegistrationEnd = (String.valueOf(object.getString("seminarRegistrationEnd")));
-                    seminarRegistrationStart = (String.valueOf(object.getString("seminarRegistrationStart")));
-                    seminarStart = (String.valueOf(object.getString("seminarStart")));
-                    seminarEnd = (String.valueOf(object.getString("seminarEnd")));
+                    seminarRegistrationEnd = (String.valueOf(object.getString("seminarRegistrationEnd"))).replace('T',' ');
+                    seminarRegistrationStart = (String.valueOf(object.getString("seminarRegistrationStart"))).replace('T',' ');
+                    seminarStart = (String.valueOf(object.getString("seminarStart"))).replace('T',' ');
+                    seminarEnd = (String.valueOf(object.getString("seminarEnd"))).replace('T',' ');
                     seminarType = (String.valueOf(object.getString("seminarType")));
                     seminarZoomLink = (String.valueOf(object.getString("seminarZoomLink")));
                     whatsappLink = (String.valueOf(object.getString("whatsappLink")));
                     seminarFees = (String.valueOf(object.getString("seminarFees")));
                     seminarDescription = (String.valueOf(object.getString("seminarDescription")));
+
+
                     seminar.setSeminarId(seminarID);
                     seminar.setSeminarName(seminarName);
                     seminar.setSeminarRegistrationEnd(seminarRegistrationEnd);

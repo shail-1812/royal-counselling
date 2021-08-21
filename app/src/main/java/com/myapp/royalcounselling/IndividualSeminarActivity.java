@@ -42,15 +42,6 @@ public class IndividualSeminarActivity extends AppCompatActivity {
         String seminarStart = intent.getStringExtra("seminarStart");
         String seminarEnd = intent.getStringExtra("seminarEnd");
         String seminarId = intent.getStringExtra("seminarId");
-        StringBuilder seminarStartBuilder = new StringBuilder(seminarStart);
-
-        for (int i = 0; i < seminarStart.length(); i++) {
-            if (seminarStartBuilder.charAt(i) == 'T') {
-                seminarStartBuilder.setCharAt(i, ' ');
-            }
-
-        }
-        seminarStart = seminarStartBuilder.toString();
         seminarName = findViewById(R.id.tv_seminar_name);
         seminarDescription = findViewById(R.id.tv_seminar_description);
         sStart = findViewById(R.id.tv_seminar_start);
