@@ -7,12 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import 	java.text.SimpleDateFormat;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
@@ -29,30 +29,21 @@ import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class DisplaySeminarFragment extends Fragment {
-
-
+public class DisplayRegisteredSeminarFragment extends Fragment {
     ArrayList<Seminar> seminarsList = new ArrayList<>();
     ListView listView;
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.fragment_display_seminar, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_display_register_seminar, container, false);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email = sharedPreferences.getString("KEY_EMAIL", "");
-        String urlPost = Utils.main_url + "getActiveSeminarListForRegisteration/" + email;
-
+        String urlPost = Utils.main_url + "getSeminarListForRegisterated/" + email;
         Toast.makeText(getActivity(), urlPost, Toast.LENGTH_LONG).show();
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading");
         progressDialog.show();
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlPost, response -> {
-
-
             Log.e("TAG", "onResponse: " + response);
             String seminarID;
             String seminarName;
@@ -65,8 +56,6 @@ public class DisplaySeminarFragment extends Fragment {
             String whatsappLink;
             String seminarFees;
             String seminarDescription;
-
-
             try {
                 progressDialog.dismiss();
                 JSONObject jsonObject = new JSONObject(response);
@@ -85,8 +74,6 @@ public class DisplaySeminarFragment extends Fragment {
                     whatsappLink = (String.valueOf(object.getString("whatsappLink")));
                     seminarFees = (String.valueOf(object.getString("seminarFees")));
                     seminarDescription = (String.valueOf(object.getString("seminarDescription")));
-
-
                     seminar.setSeminarId(seminarID);
                     seminar.setSeminarName(seminarName);
                     seminar.setSeminarRegistrationEnd(seminarRegistrationEnd);
@@ -100,25 +87,14 @@ public class DisplaySeminarFragment extends Fragment {
                     seminar.setSeminarDescription(seminarDescription);
                     seminarsList.add(seminar);
                 }
-                //Toast.makeText(getActivity(),  String.valueOf(seminarsList.get(0).getSeminarName()), Toast.LENGTH_LONG).show();
-//                gridView = rootView.findViewById(R.id.grid);
                 listView = rootView.findViewById(R.id.list);
-                MySeminarAdapter mySeminarAdapter = new MySeminarAdapter(getContext(), seminarsList,"nonRegistered");
-                //String value = String.valueOf(seminarsList.size());
-                //Toast.makeText(getContext(), String.valueOf(seminarsList.size()), Toast.LENGTH_LONG).show();
-                //gridView.setAdapter(mySeminarAdapter);
+                MySeminarAdapter mySeminarAdapter = new MySeminarAdapter(getContext(), seminarsList,"registered");
                 listView.setAdapter(mySeminarAdapter);
-
-                //FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                //fragmentTransaction.replace(R.id.frame, displaySeminarFragment);
-                //fragmentTransaction.commit();
-
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }, error -> Log.e("api error", "something went wrong" + error)) {
-
 
         };
 

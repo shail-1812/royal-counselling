@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".ui.DisplaySeminarFragment">
-
-
+    tools:context=".ui.DisplayRegisteredSeminarFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +21,7 @@
             android:layout_marginTop="30dp"
             android:fontFamily="@font/pt_sans"
             android:gravity="center_horizontal"
-            android:text="All Seminars"
+            android:text="All Registered Seminar"
             android:textColor="#000"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -42,6 +40,5 @@
             android:verticalSpacing="7dp" />
 
     </LinearLayout>
-
 
 </FrameLayout>

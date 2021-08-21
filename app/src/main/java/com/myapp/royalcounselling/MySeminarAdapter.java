@@ -16,12 +16,13 @@ public class MySeminarAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<Seminar> seminarArrayList;
+    String seminarIntent;
     int[] blurImages = {R.drawable.image_blur, R.drawable.blurred};
 
-    public MySeminarAdapter(Context context, ArrayList<Seminar> seminarArrayList) {
+    public MySeminarAdapter(Context context, ArrayList<Seminar> seminarArrayList, String seminarIntent) {
         this.context = context;
         this.seminarArrayList = seminarArrayList;
-
+        this.seminarIntent = seminarIntent;
     }
 
     @Override
@@ -65,16 +66,29 @@ public class MySeminarAdapter extends BaseAdapter {
                 String seminarStart = seminar.getSeminarStart();
                 String seminarEnd = seminar.getSeminarEnd();
                 String seminarID = seminar.getSeminarId();
-                Intent i = new Intent(context, IndividualSeminarActivity.class);
-                i.putExtra("seminarName", seminarName);
-                i.putExtra("seminarDescription", seminarDescription);
-                i.putExtra("registrationStart", registrationStart);
-                i.putExtra("registrationEnd", registrationEnd);
-                i.putExtra("seminarType", seminarType);
-                i.putExtra("seminarStart", seminarStart);
-                i.putExtra("seminarEnd", seminarEnd);
-                i.putExtra("seminarId", seminarID);
-                context.startActivity(i);
+                if(seminarIntent.equals("nonRegistered")){
+                    Intent i = new Intent(context, IndividualSeminarActivity.class);
+                    i.putExtra("seminarName", seminarName);
+                    i.putExtra("seminarDescription", seminarDescription);
+                    i.putExtra("registrationStart", registrationStart);
+                    i.putExtra("registrationEnd", registrationEnd);
+                    i.putExtra("seminarType", seminarType);
+                    i.putExtra("seminarStart", seminarStart);
+                    i.putExtra("seminarEnd", seminarEnd);
+                    i.putExtra("seminarId", seminarID);
+                    context.startActivity(i);
+                }else if(seminarIntent.equals("registered")){
+                    Intent i = new Intent(context, IndividualRegisteredActivity.class);
+                    i.putExtra("seminarName", seminarName);
+                    i.putExtra("seminarDescription", seminarDescription);
+                    i.putExtra("registrationStart", registrationStart);
+                    i.putExtra("registrationEnd", registrationEnd);
+                    i.putExtra("seminarType", seminarType);
+                    i.putExtra("seminarStart", seminarStart);
+                    i.putExtra("seminarEnd", seminarEnd);
+                    i.putExtra("seminarId", seminarID);
+                    context.startActivity(i);
+                }
             }
         });
         return convertView;
