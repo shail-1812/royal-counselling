@@ -19,6 +19,7 @@ import com.myapp.royalcounselling.ui.AboutRoyalActivity;
 import com.myapp.royalcounselling.ui.ContactUsFragment;
 import com.myapp.royalcounselling.ui.DisplayRegisteredSeminarFragment;
 import com.myapp.royalcounselling.ui.DisplaySeminarFragment;
+import com.myapp.royalcounselling.ui.PersonalCounsellingFragment;
 import com.myapp.royalcounselling.ui.WhyCounsellingActivity;
 
 public class NavigationDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,19 +70,18 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             Intent i = new Intent(NavigationDrawerActivity.this, LoginActivity.class);
             startActivity(i);
             finish();
-        }
-        else if (id == R.id.nav_why_counselling) {
+        } else if (id == R.id.nav_why_counselling) {
             fragment = new WhyCounsellingActivity();
-        }
-        else if (id == R.id.nav_contact_us) {
+        } else if (id == R.id.nav_contact_us) {
             fragment = new ContactUsFragment();
-        }
-        else if (id == R.id.nav_view_seminar) {
+        } else if (id == R.id.nav_view_seminar) {
             fragment = new DisplaySeminarFragment();
-        }
-        else if (id == R.id.nav_view_registered_seminar){
+        } else if (id == R.id.nav_view_registered_seminar) {
             fragment = new DisplayRegisteredSeminarFragment();
+        } else if (id == R.id.nav_view_personal_counselling) {
+            fragment = new PersonalCounsellingFragment();
         }
+
         if (fragment != null) {
 
 
