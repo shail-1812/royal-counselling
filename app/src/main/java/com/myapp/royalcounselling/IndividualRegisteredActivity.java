@@ -51,7 +51,8 @@ public class IndividualRegisteredActivity extends AppCompatActivity {
             viewPPTButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent i = new Intent(IndividualRegisteredActivity.this,PowerPointPresentationActivity.class);
+                    startActivity(i);
                 }
             });
             notice.setVisibility(View.GONE);
