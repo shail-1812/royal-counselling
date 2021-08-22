@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoyalCounselling"
         tools:ignore="AllowBackup">
-        <activity android:name=".PowerPointPresentationActivity"></activity>
+        <activity android:name=".PDFActivity"></activity>
+        <activity android:name=".PowerPointPresentationActivity" />
         <activity android:name=".IndividualRegisteredActivity" />
         <activity android:name=".IndividualSeminarActivity" />
         <!--
