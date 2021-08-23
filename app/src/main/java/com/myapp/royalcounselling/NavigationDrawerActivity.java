@@ -19,6 +19,7 @@ import com.myapp.royalcounselling.ui.AboutRoyalActivity;
 import com.myapp.royalcounselling.ui.ContactUsFragment;
 import com.myapp.royalcounselling.ui.DisplayRegisteredSeminarFragment;
 import com.myapp.royalcounselling.ui.DisplaySeminarFragment;
+import com.myapp.royalcounselling.ui.PPTRequestFragment;
 import com.myapp.royalcounselling.ui.PersonalCounsellingFragment;
 import com.myapp.royalcounselling.ui.WhyCounsellingActivity;
 
@@ -80,6 +81,9 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             fragment = new DisplayRegisteredSeminarFragment();
         } else if (id == R.id.nav_view_personal_counselling) {
             fragment = new PersonalCounsellingFragment();
+        }
+        else if(id==R.id.nav_view_ppt_requests){
+            fragment = new PPTRequestFragment();
         }
 
         if (fragment != null) {

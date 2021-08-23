@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_inner_box"
+
+    >
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="Request ID"
+                android:textSize="15sp"
+                android:textColor="#000000"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:text="Request ID"
+                android:id="@+id/tv_personal_request_id"
+                android:textColor="#000000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_weight="0.7"
+                android:text="Request Time"
+                android:textColor="#000000"/>
+            <TextView
+                android:layout_width="0dp"
+                android:textSize="15sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Request Time"
+                android:id="@+id/tv_personal_request_time"
+                android:textColor="#000000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:textSize="15sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="Start Time"
+                android:textColor="#000000"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:text="Comment"
+                android:id="@+id/tv_personal_request_start_time"
+                android:textColor="#000000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:textSize="15sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="Counselling Type"
+                android:textColor="#000000"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:text="Online"
+                android:id="@+id/tv_personal_request_type"
+                android:textColor="#000000"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_weight="0.3"
+        android:layout_width="0dp"
+        android:src="@drawable/circle_correct_tick_icon"
+        android:layout_height="match_parent"
+
+        />
+</LinearLayout>

@@ -34,6 +34,16 @@
             android:icon="@drawable/ic_baseline_preview_24"
             android:title="Book Personal Counselling"
             tools:ignore="HardcodedText" />
+        <item
+            android:id="@+id/nav_view_ppt_requests"
+            android:icon="@drawable/ic_baseline_preview_24"
+            android:title="PPT Request"
+            tools:ignore="HardcodedText" />
+        <item
+            android:id="@+id/nav_view_personal_counselling_request"
+            android:icon="@drawable/ic_baseline_preview_24"
+            android:title="Personal Counselling Request"
+            tools:ignore="HardcodedText" />
 
         <item
             android:id="@+id/nav_contact_us"
