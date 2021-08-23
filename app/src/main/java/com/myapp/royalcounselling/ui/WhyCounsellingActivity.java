@@ -11,8 +11,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.myapp.royalcounselling.R;
 
-import java.util.Objects;
-
 public class WhyCounsellingActivity extends Fragment {
 
     @Override

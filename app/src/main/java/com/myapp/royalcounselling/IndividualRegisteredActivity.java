@@ -1,14 +1,12 @@
 package com.myapp.royalcounselling;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class IndividualRegisteredActivity extends AppCompatActivity {
@@ -41,19 +39,15 @@ public class IndividualRegisteredActivity extends AppCompatActivity {
         sEnd.setText(seminarEnd);
         type.setText(seminarType);
 
-        java.sql.Timestamp timeStamp = java.sql.Timestamp.valueOf( seminarEnd );
+        java.sql.Timestamp timeStamp = java.sql.Timestamp.valueOf(seminarEnd);
         java.sql.Timestamp cTime = new java.sql.Timestamp(System.currentTimeMillis());
 
-        if(cTime.before(timeStamp)){
+        if (cTime.before(timeStamp)) {
             viewPPTButton.setVisibility(View.GONE);
-        }
-        else{
-            viewPPTButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(IndividualRegisteredActivity.this,PowerPointPresentationActivity.class);
-                    startActivity(i);
-                }
+        } else {
+            viewPPTButton.setOnClickListener(v -> {
+                Intent i = new Intent(IndividualRegisteredActivity.this, PowerPointPresentationActivity.class);
+                startActivity(i);
             });
             notice.setVisibility(View.GONE);
         }

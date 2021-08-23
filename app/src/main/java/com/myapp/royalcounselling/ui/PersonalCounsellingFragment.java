@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,6 +43,7 @@ public class PersonalCounsellingFragment extends Fragment {
     ArrayList<String> counsellingTime;
     Button counsellingBook;
     String strData;
+    StringRequest stringRequest1;
 
 
     @Override
@@ -53,7 +53,6 @@ public class PersonalCounsellingFragment extends Fragment {
         spinner = rootView.findViewById(R.id.spinner_time);
         calendar = rootView.findViewById(R.id.calendar);
         counsellingBook = rootView.findViewById(R.id.btn_register_personal);
-
 
         calendar.setOnDateChangeListener(
                 (view, year, month, dayOfMonth) -> {
@@ -78,7 +77,6 @@ public class PersonalCounsellingFragment extends Fragment {
                                 String counsellingId = (object.getString("timeSlotID"));
                                 String[] parts = counsellingStart.split("T");
                                 counsellingStart = parts[1];
-//                                String counsellingEnd = (String.valueOf(object.getString("endTime")));
                                 counsellingTime.add(counsellingId + ") " + counsellingStart);
                             }
 
@@ -107,7 +105,7 @@ public class PersonalCounsellingFragment extends Fragment {
                                     if (position != 0) {
                                         strData = "";
                                         strData = parent.getItemAtPosition(position).toString();
-                                        Toast.makeText(getActivity(), strData, Toast.LENGTH_LONG).show();
+//                                        Toast.makeText(getActivity(), strData, Toast.LENGTH_LONG).show();
                                     }
                                 }
 
@@ -123,7 +121,9 @@ public class PersonalCounsellingFragment extends Fragment {
                                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MYAPP", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("counsellingID", ID);
+                                editor.putInt("flag", 1);
                                 editor.apply();
+
                                 Fragment aboutUs = new AboutRoyalActivity();
                                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.frame, aboutUs);
@@ -139,12 +139,10 @@ public class PersonalCounsellingFragment extends Fragment {
 
                     });
 
-
                     stringRequest.setRetryPolicy(new DefaultRetryPolicy(
                             0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                     VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
                 });
-
 
         return rootView;
     }

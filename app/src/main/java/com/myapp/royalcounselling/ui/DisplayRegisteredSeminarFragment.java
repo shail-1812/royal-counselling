@@ -39,7 +39,7 @@ public class DisplayRegisteredSeminarFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email = sharedPreferences.getString("KEY_EMAIL", "");
         String urlPost = Utils.main_url + "getSeminarListForRegisterated/" + email;
-        Toast.makeText(getActivity(), urlPost, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(), urlPost, Toast.LENGTH_LONG).show();
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading");
         progressDialog.show();

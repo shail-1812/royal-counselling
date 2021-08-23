@@ -22,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         name = sharedPreferences.getString("KEY_NAME", "");
         email = sharedPreferences.getString("KEY_EMAIL", "");
         password = sharedPreferences.getString("KEY_PASSWORD", "");
-        Toast.makeText(SplashScreenActivity.this, password, Toast.LENGTH_LONG).show();
+//        Toast.makeText(SplashScreenActivity.this, password, Toast.LENGTH_LONG).show();
 
         int time = 3000;
         new Handler().postDelayed(() -> {
@@ -33,7 +33,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             if (password.equals("") && email.equals("")) {
                 intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
             } else {
-                Toast.makeText(SplashScreenActivity.this, password, Toast.LENGTH_LONG).show();
+//                Toast.makeText(SplashScreenActivity.this, password, Toast.LENGTH_LONG).show();
                 intent = new Intent(SplashScreenActivity.this, NavigationDrawerActivity.class);
 
             }
