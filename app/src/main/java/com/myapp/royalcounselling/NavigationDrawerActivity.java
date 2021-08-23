@@ -82,8 +82,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             fragment = new DisplayRegisteredSeminarFragment();
         } else if (id == R.id.nav_view_personal_counselling) {
             fragment = new PersonalCounsellingFragment();
-        }
-        else if(id==R.id.nav_view_ppt_requests){
+        } else if (id == R.id.nav_view_ppt_requests) {
             fragment = new PPTRequestFragment();
         }else if(id == R.id.nav_view_personal_counselling_request){
             fragment = new PersonalCounsellingRequestFragement();
