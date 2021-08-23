@@ -21,6 +21,7 @@ import com.myapp.royalcounselling.ui.DisplayRegisteredSeminarFragment;
 import com.myapp.royalcounselling.ui.DisplaySeminarFragment;
 import com.myapp.royalcounselling.ui.PPTRequestFragment;
 import com.myapp.royalcounselling.ui.PersonalCounsellingFragment;
+import com.myapp.royalcounselling.ui.PersonalCounsellingRequestFragement;
 import com.myapp.royalcounselling.ui.WhyCounsellingActivity;
 
 public class NavigationDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -84,6 +85,8 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         }
         else if(id==R.id.nav_view_ppt_requests){
             fragment = new PPTRequestFragment();
+        }else if(id == R.id.nav_view_personal_counselling_request){
+            fragment = new PersonalCounsellingRequestFragement();
         }
 
         if (fragment != null) {

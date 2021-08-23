@@ -15,8 +15,10 @@ import androidx.fragment.app.Fragment;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.myapp.royalcounselling.MyPersonalRequestAdapter;
 import com.myapp.royalcounselling.MyRequestAdapter;
 import com.myapp.royalcounselling.PPTRequestBean;
+import com.myapp.royalcounselling.PersonalCounsellingBean;
 import com.myapp.royalcounselling.R;
 import com.myapp.royalcounselling.Utils;
 import com.myapp.royalcounselling.VolleySingleton;
@@ -28,18 +30,18 @@ import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class PPTRequestFragment extends Fragment {
-    ArrayList<PPTRequestBean> requestList = new ArrayList<PPTRequestBean>();
+public class PersonalCounsellingRequestFragement extends Fragment {
+    ArrayList<PersonalCounsellingBean> requestList = new ArrayList<PersonalCounsellingBean>();
     ListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragement_ppt_request, container, false);
+        View rootView = inflater.inflate(R.layout.fragement_personal_counselling_request, container, false);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email = sharedPreferences.getString("KEY_EMAIL", "");
-        String urlPost = Utils.main_url + "powerPointRequestUserWise/" + email;
+        String urlPost = Utils.main_url + "requestForPersonalCounsellingByUser/" + email;
 
         Toast.makeText(getActivity(), urlPost, Toast.LENGTH_LONG).show();
         ProgressDialog progressDialog = new ProgressDialog(getContext());
@@ -50,36 +52,40 @@ public class PPTRequestFragment extends Fragment {
 
 
             Log.e("TAG", "onResponse: " + response);
-            String comment;
-            boolean queryOver;
-            String requestQuery;
-            String queryTime;
+            String requestID;
+            boolean accepted;
+            String startTime;
+            String requestTime;
+            String counsellingType;
 
             try {
                 progressDialog.dismiss();
                 JSONObject jsonObject = new JSONObject(response);
                 JSONArray jsonArray = jsonObject.getJSONArray("data");
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    PPTRequestBean request = new PPTRequestBean();
+                    PersonalCounsellingBean request = new PersonalCounsellingBean();
                     JSONObject object = jsonArray.getJSONObject(i);
-                    comment = (String.valueOf(object.getString("comment")));
+                    requestID = (String.valueOf(object.getInt("personalCID")));
+                    counsellingType = (String.valueOf(object.getString("counsellingType")));
 
-                    queryTime = (String.valueOf(object.getString("requestAt"))).replace('T',' ').replace('+',' ');
-                    requestQuery =(String.valueOf(object.getString("requestQuery")));
-                    String queryOverString =(String.valueOf(object.getString("queryOver")));
+                    startTime = (String.valueOf(object.getString("startTime"))).replace('T',' ').replace('+',' ');
+                    requestTime =(String.valueOf(object.getString("requestedAt"))).replace('T',' ').replace('+',' ');
+                    String acceptString =(String.valueOf(object.getString("accepted")));
+
                     try{
-                        queryOver = Boolean.parseBoolean(queryOverString);
+                        accepted = Boolean.parseBoolean(acceptString);
                     }catch(Exception e){
-                        queryOver = false;
+                        accepted = false;
                     }
-                    request.setComment(comment);
-                    request.setRequestQuery(requestQuery);
-                    request.setQueryTime(queryTime);
-                    request.setQueryOver(queryOver);
+                    request.setAccepted(accepted);
+                    request.setCounsellingType(counsellingType);
+                    request.setRequestTime(requestTime);
+                    request.setStartTime(startTime);
+                    request.setPersonalCounsellingID(requestID);
                     requestList.add(request);
                 }
                 listView = rootView.findViewById(R.id.list);
-                MyRequestAdapter myRequestAdapter = new MyRequestAdapter(getContext(), requestList);
+                MyPersonalRequestAdapter myRequestAdapter = new MyPersonalRequestAdapter(getContext(), requestList);
                 listView.setAdapter(myRequestAdapter);
             } catch (Exception e) {
                 e.printStackTrace();
