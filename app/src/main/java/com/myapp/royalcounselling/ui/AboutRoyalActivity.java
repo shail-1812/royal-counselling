@@ -53,7 +53,7 @@ public class AboutRoyalActivity extends Fragment {
                     if (status == 200) {
                         Toast.makeText(getContext(), "Personal counselling session booked. You will receive notification once the admin approves.", Toast.LENGTH_LONG).show();
                     } else if (status == -1) {
-                        Toast.makeText(getContext(), "Slot already booked by someone!!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Slot Already booked by someone or requested by you!!", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(getContext(), "Error please try again after some time!!", Toast.LENGTH_LONG).show();
                     }

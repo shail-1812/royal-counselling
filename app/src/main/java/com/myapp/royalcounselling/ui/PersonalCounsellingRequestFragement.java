@@ -73,7 +73,17 @@ public class PersonalCounsellingRequestFragement extends Fragment {
                     String acceptString =(String.valueOf(object.getString("accepted")));
 
                     try{
-                        accepted = Boolean.parseBoolean(acceptString);
+                        Log.w("ACCEPT STATUS", requestID+"     "+acceptString);
+                        if(acceptString.equals(null)){
+                            accepted = false;
+                        }else if(acceptString.equals("f")){
+                            accepted = false;
+                        }else if(acceptString.equals("t")){
+                            accepted = true;
+                        }
+                        else{
+                            accepted = false;
+                        }
                     }catch(Exception e){
                         accepted = false;
                     }
