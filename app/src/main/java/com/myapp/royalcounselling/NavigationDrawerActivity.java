@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -28,6 +30,8 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
 
     NavigationView navigationView;
     DrawerLayout drawerLayout;
+    View header;
+    TextView email;
 
     public NavigationDrawerActivity() {
     }
@@ -48,8 +52,21 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
+        header = navigationView.getHeaderView(0);
+        email = header.findViewById(R.id.nav_email);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
+        String email1 = sharedPreferences.getString("KEY_EMAIL", "");
+
+        //email.setText(email1);
+
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        Fragment aboutUs = new AboutRoyalActivity();
+        fragmentTransaction.replace(R.id.frame, aboutUs);
+        fragmentTransaction.commit();
 
     }
 

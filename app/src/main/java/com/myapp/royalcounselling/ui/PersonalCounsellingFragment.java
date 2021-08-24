@@ -3,6 +3,7 @@ package com.myapp.royalcounselling.ui;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,7 +44,6 @@ public class PersonalCounsellingFragment extends Fragment {
     ArrayList<String> counsellingTime;
     Button counsellingBook;
     String strData;
-    StringRequest stringRequest1;
 
 
     @Override
@@ -53,6 +53,7 @@ public class PersonalCounsellingFragment extends Fragment {
         spinner = rootView.findViewById(R.id.spinner_time);
         calendar = rootView.findViewById(R.id.calendar);
         counsellingBook = rootView.findViewById(R.id.btn_register_personal);
+        spinner.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
 
         calendar.setOnDateChangeListener(
                 (view, year, month, dayOfMonth) -> {
@@ -89,7 +90,7 @@ public class PersonalCounsellingFragment extends Fragment {
                                     if (position == 0) {
                                         tvData.setTextColor(Color.GRAY);
                                     } else {
-                                        tvData.setTextColor(Color.MAGENTA);
+                                        tvData.setTextColor(Color.WHITE);
 
 
                                     }

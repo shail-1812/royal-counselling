@@ -20,10 +20,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoyalCounselling"
         tools:ignore="AllowBackup">
-        <activity android:name=".PDFActivity"></activity>
-        <activity android:name=".PowerPointPresentationActivity" />
-        <activity android:name=".IndividualRegisteredActivity" />
-        <activity android:name=".IndividualSeminarActivity" />
+        <activity android:name=".PDFActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PowerPointPresentationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".IndividualRegisteredActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".IndividualSeminarActivity"
+            android:screenOrientation="portrait"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -38,17 +42,25 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity android:name=".UserProfileActivity" />
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".UserProfileActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".NavigationDrawerActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/Theme.RoyalCounselling.NoActionBar" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".SignUpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ForgotPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

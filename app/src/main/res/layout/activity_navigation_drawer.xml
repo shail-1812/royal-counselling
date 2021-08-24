@@ -18,11 +18,13 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:background="#D2F3EE"
-        app:itemTextColor="#022FB6"
-        app:itemIconTint="#7393F3"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
+        app:itemIconTint="#3E6DFA"
+        app:itemTextColor="#001B6E"
         app:menu="@menu/activity_main_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

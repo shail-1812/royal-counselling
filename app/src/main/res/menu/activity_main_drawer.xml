@@ -13,7 +13,7 @@
         <item
             android:id="@+id/nav_why_counselling"
             android:icon="@drawable/ic_baseline_info_24"
-            android:title="Why Counselling?"
+            android:title="Why is Counselling required?"
             tools:ignore="HardcodedText" />
 
 
@@ -31,19 +31,20 @@
 
         <item
             android:id="@+id/nav_view_personal_counselling"
-            android:icon="@drawable/ic_baseline_preview_24"
+            android:icon="@drawable/ic_baseline_app_registration_24"
             android:title="Book Personal Counselling"
-            tools:ignore="HardcodedText" />
-        <item
-            android:id="@+id/nav_view_ppt_requests"
-            android:icon="@drawable/ic_baseline_preview_24"
-            android:title="PPT Request"
             tools:ignore="HardcodedText" />
         <item
             android:id="@+id/nav_view_personal_counselling_request"
             android:icon="@drawable/ic_baseline_preview_24"
-            android:title="Personal Counselling Request"
+            android:title="View My Counselling Request"
             tools:ignore="HardcodedText" />
+        <item
+            android:id="@+id/nav_view_ppt_requests"
+            android:icon="@drawable/ic_baseline_question_answer_24"
+            android:title="PPT Request"
+            tools:ignore="HardcodedText" />
+
 
         <item
             android:id="@+id/nav_contact_us"
