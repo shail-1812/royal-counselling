@@ -92,6 +92,7 @@ public class PersonalCounsellingRequestFragement extends Fragment {
                     request.setRequestTime(requestTime);
                     request.setStartTime(startTime);
                     request.setPersonalCounsellingID(requestID);
+                    Log.e("requestAccepted", String.valueOf(accepted));
                     requestList.add(request);
                 }
                 listView = rootView.findViewById(R.id.list);
