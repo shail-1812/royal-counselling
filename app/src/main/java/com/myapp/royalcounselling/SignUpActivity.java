@@ -44,16 +44,22 @@ public class SignUpActivity extends AppCompatActivity {
             String em = emailID.getText().toString();
             String pass = password.getText().toString();
             String phone = phoneNumber.getText().toString();
-            SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("KEY_EMAIL", emailID.getText().toString());
-            editor.putString("KEY_PASSWORD", password.getText().toString());
-            editor.apply();
-            loadData(fn, ln, em, pass, phone);
-
+            if (fn.length() < 3) {
+                Toast.makeText(SignUpActivity.this, "Please enter name again", Toast.LENGTH_LONG).show();
+            } else if (!em.contains("@") && em.length() < 10) {
+                Toast.makeText(SignUpActivity.this, "Please enter email again", Toast.LENGTH_LONG).show();
+            } else if (pass.length() < 5) {
+                Toast.makeText(SignUpActivity.this, "Please enter password more than 5 characters", Toast.LENGTH_LONG).show();
+            } else {
+                SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("KEY_EMAIL", emailID.getText().toString());
+                editor.putString("KEY_PASSWORD", password.getText().toString());
+                editor.apply();
+                loadData(fn, ln, em, pass, phone);
+            }
         });
     }
-
 
 
     private void loadData(String fn, String ln, String em, String pass, String phone) {
