@@ -45,8 +45,10 @@ public class LoginActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("KEY_EMAIL", em);
             editor.putString("KEY_PASSWORD", pass);
+            String token = sharedPreferences.getString("TOKEN","");
+
             editor.apply();
-            loadData(em, pass);
+            loadData(em, pass,token);
         });
 
         signUp.setOnClickListener(v -> {
@@ -60,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void loadData(String em, String pass) {
+    private void loadData(String em, String pass,String token) {
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
@@ -111,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                 Map<String, String> map = new HashMap<>();
                 map.put("emailID", em);
                 map.put("password", pass);
+                map.put("tokenID",token);
                 return map;
             }
 

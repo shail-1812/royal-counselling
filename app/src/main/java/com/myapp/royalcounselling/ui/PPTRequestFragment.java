@@ -63,7 +63,9 @@ public class PPTRequestFragment extends Fragment {
                     PPTRequestBean request = new PPTRequestBean();
                     JSONObject object = jsonArray.getJSONObject(i);
                     comment = (String.valueOf(object.getString("comment")));
-
+                    if(comment.equals("null")){
+                        comment = "No Update From Admin";
+                    }
                     queryTime = (String.valueOf(object.getString("requestAt"))).replace('T',' ').replace('+',' ');
                     requestQuery =(String.valueOf(object.getString("requestQuery")));
                     String queryOverString =(String.valueOf(object.getString("queryOver")));

@@ -12,7 +12,7 @@
         android:inputType="text"
         android:id="@+id/edt_search_ppt"
         android:textSize="20sp"
-        android:hint="Search Query"
+        android:hint="Search Presentation"
         tools:ignore="HardcodedText"
         android:background="#3A3636"
         android:textColor="#ffff"

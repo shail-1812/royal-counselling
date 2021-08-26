@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "170642830002",
+    "project_id": "royal-counselling-app",
+    "storage_bucket": "royal-counselling-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170642830002:android:3ad36fe0120d080cc50fab",
+        "android_client_info": {
+          "package_name": "com.myapp.royalcounselling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170642830002-rlhpjgscvbqregt0plcedli9pg7hocq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsawSvVhoWzvKFO9EatwPH-uf4n9-xDDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170642830002-rlhpjgscvbqregt0plcedli9pg7hocq1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
