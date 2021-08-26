@@ -192,7 +192,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("city", city);
                 params.put("state", state);
-                params.put("instituteName", institutename);
+                params.put("institutionName", institutename);
                 params.put("gender", gender);
                 params.put("board", board);
                 params.put("grade", grade);
