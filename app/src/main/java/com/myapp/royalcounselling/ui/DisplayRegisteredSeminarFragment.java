@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -32,6 +32,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class DisplayRegisteredSeminarFragment extends Fragment {
     ArrayList<Seminar> seminarsList = new ArrayList<>();
     ListView listView;
+    TextView textView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +40,8 @@ public class DisplayRegisteredSeminarFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email = sharedPreferences.getString("KEY_EMAIL", "");
         String urlPost = Utils.main_url + "getSeminarListForRegisterated/" + email;
+
+        textView = rootView.findViewById(R.id.txt_empty_registered);
 //        Toast.makeText(getActivity(), urlPost, Toast.LENGTH_LONG).show();
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading");
@@ -60,15 +63,16 @@ public class DisplayRegisteredSeminarFragment extends Fragment {
                 progressDialog.dismiss();
                 JSONObject jsonObject = new JSONObject(response);
                 JSONArray jsonArray = jsonObject.getJSONArray("data");
+
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Seminar seminar = new Seminar();
                     JSONObject object = jsonArray.getJSONObject(i);
                     seminarID = (String.valueOf(object.getString("seminarID")));
                     seminarName = (String.valueOf(object.getString("seminarName")));
-                    seminarRegistrationEnd = (String.valueOf(object.getString("seminarRegistrationEnd"))).replace('T',' ');
-                    seminarRegistrationStart = (String.valueOf(object.getString("seminarRegistrationStart"))).replace('T',' ');
-                    seminarStart = (String.valueOf(object.getString("seminarStart"))).replace('T',' ');
-                    seminarEnd = (String.valueOf(object.getString("seminarEnd"))).replace('T',' ');
+                    seminarRegistrationEnd = (String.valueOf(object.getString("seminarRegistrationEnd"))).replace('T', ' ');
+                    seminarRegistrationStart = (String.valueOf(object.getString("seminarRegistrationStart"))).replace('T', ' ');
+                    seminarStart = (String.valueOf(object.getString("seminarStart"))).replace('T', ' ');
+                    seminarEnd = (String.valueOf(object.getString("seminarEnd"))).replace('T', ' ');
                     seminarType = (String.valueOf(object.getString("seminarType")));
                     seminarZoomLink = (String.valueOf(object.getString("seminarZoomLink")));
                     whatsappLink = (String.valueOf(object.getString("whatsappLink")));
@@ -87,8 +91,9 @@ public class DisplayRegisteredSeminarFragment extends Fragment {
                     seminar.setSeminarDescription(seminarDescription);
                     seminarsList.add(seminar);
                 }
+
                 listView = rootView.findViewById(R.id.list);
-                MySeminarAdapter mySeminarAdapter = new MySeminarAdapter(getContext(), seminarsList,"registered");
+                MySeminarAdapter mySeminarAdapter = new MySeminarAdapter(getContext(), seminarsList, "registered");
                 listView.setAdapter(mySeminarAdapter);
 
             } catch (Exception e) {
@@ -98,6 +103,9 @@ public class DisplayRegisteredSeminarFragment extends Fragment {
 
         };
 
+        if (seminarsList.size() == 0) {
+            textView.setText("WTF are you waiting for register now");
+        }
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(
                 0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);

@@ -49,7 +49,7 @@
         android:layout_gravity="bottom"
         android:layout_marginTop="45dp"
         android:contentDescription="footer"
-        android:src="@drawable/footer"
+        android:src="@drawable/logo4"
         tools:ignore="HardcodedText" />
 
 
