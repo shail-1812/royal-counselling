@@ -91,6 +91,13 @@ public class DisplayRegisteredSeminarFragment extends Fragment {
                     seminar.setSeminarDescription(seminarDescription);
                     seminarsList.add(seminar);
                 }
+                Log.e("seminar sizes", String.valueOf(seminarsList.isEmpty()));
+                if (seminarsList.isEmpty()) {
+                    textView.setText("WTF are you waiting for register now");
+                } else {
+                    Log.e("checking", "inside else");
+                    textView.setText(" ");
+                }
 
                 listView = rootView.findViewById(R.id.list);
                 MySeminarAdapter mySeminarAdapter = new MySeminarAdapter(getContext(), seminarsList, "registered");
@@ -103,9 +110,8 @@ public class DisplayRegisteredSeminarFragment extends Fragment {
 
         };
 
-        if (seminarsList.size() == 0) {
-            textView.setText("WTF are you waiting for register now");
-        }
+
+
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(
                 0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);

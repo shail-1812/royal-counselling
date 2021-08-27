@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -102,7 +101,13 @@ public class DisplaySeminarFragment extends Fragment {
                     seminar.setSeminarDescription(seminarDescription);
                     seminarsList.add(seminar);
                 }
+                Log.e("seminar size", String.valueOf(seminarsList.isEmpty()));
 
+                if (seminarsList.isEmpty()) {
+                    textView.setText("Sorry!!! No seminars at the moment");
+                } else {
+                    textView.setText("");
+                }
                 listView = rootView.findViewById(R.id.list);
                 MySeminarAdapter mySeminarAdapter = new MySeminarAdapter(getContext(), seminarsList, "nonRegistered");
                 listView.setAdapter(mySeminarAdapter);
@@ -116,10 +121,10 @@ public class DisplaySeminarFragment extends Fragment {
 
         };
 
-        Log.e("seminar size", String.valueOf(seminarsList.size()));
-        if (seminarsList.size() == 0) {
-            textView.setText("Sorry!!! No seminars at the moment");
-        }
+
+//        if (seminarsList.size() == 0) {
+//
+//        }
 
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(
                 0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

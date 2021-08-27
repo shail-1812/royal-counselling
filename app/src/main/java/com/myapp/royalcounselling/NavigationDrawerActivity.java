@@ -50,10 +50,14 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 toolbar, R.string.nav_app_bar_open_drawer_description,
                 R.string.nav_app_bar_open_drawer_description);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         actionBarDrawerToggle.syncState();
 
         header = navigationView.getHeaderView(0);
         email = header.findViewById(R.id.nav_email);
+//        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.background);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email1 = sharedPreferences.getString("KEY_EMAIL", "");
