@@ -61,15 +61,20 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
 
         SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email1 = sharedPreferences.getString("KEY_EMAIL", "");
-
-        //email.setText(email1);
-
+        String activityToDirect = sharedPreferences.getString("activityToDirect","");
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("activityToDirect");
 
         navigationView.setNavigationItemSelectedListener(this);
-
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        Fragment aboutUs = new AboutRoyalActivity();
-        fragmentTransaction.replace(R.id.frame, aboutUs);
+        Fragment fragment;
+        if(activityToDirect.equals("PPTRequest")){
+            fragment = new PPTRequestFragment();
+        }
+        else{
+            fragment = new AboutRoyalActivity();
+        }
+        fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
 
     }
