@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="40dp"
             android:layout_marginTop="30dp"
             app:cardBackgroundColor="#59A288E3"
             app:cardCornerRadius="15dp"
@@ -67,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Registration Start  -   "
+                        android:text="Registration Start - "
                         android:textColor="#000"
                         android:textSize="15sp"
                         tools:ignore="HardcodedText" />
@@ -95,7 +96,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Registration End    -   "
+                        android:text="Registration End - "
                         android:textColor="#000"
                         android:textSize="15sp"
                         tools:ignore="HardcodedText" />
@@ -125,7 +126,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Seminar Type         -   "
+                        android:text="Seminar Type - "
                         android:textColor="#000"
                         android:textSize="15sp"
                         tools:ignore="HardcodedText" />
@@ -155,7 +156,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Seminar Start         -   "
+                        android:text="Seminar - "
                         android:textColor="#000"
                         android:textSize="15sp"
                         tools:ignore="HardcodedText" />
@@ -189,7 +190,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Seminar End          -   "
+                        android:text="Seminar End - "
                         android:textColor="#000"
                         android:textSize="15sp"
                         tools:ignore="HardcodedText" />
@@ -246,6 +247,7 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal='70dp'
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/button_colour_change"
             android:fontFamily="@font/pt_sans"
             android:padding="15dp"
