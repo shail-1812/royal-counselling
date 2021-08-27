@@ -52,7 +52,7 @@ public class MySeminarAdapter extends BaseAdapter {
 
         ImageView seminarImage = convertView.findViewById(R.id.img_seminar);
         seminarName.setText(seminarArrayList.get(position).getSeminarName());
-        int b = (int)(Math.random()*(blurImages.length));
+        int b = (int) (Math.random() * (blurImages.length));
         seminarImage.setImageResource(blurImages[b]);
         seminarDate.setText(seminarArrayList.get(position).getSeminarStart());
         convertView.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class MySeminarAdapter extends BaseAdapter {
                 String seminarStart = seminar.getSeminarStart();
                 String seminarEnd = seminar.getSeminarEnd();
                 String seminarID = seminar.getSeminarId();
-                if(seminarIntent.equals("nonRegistered")){
+                if (seminarIntent.equals("nonRegistered")) {
                     Intent i = new Intent(context, IndividualSeminarActivity.class);
                     i.putExtra("seminarName", seminarName);
                     i.putExtra("seminarDescription", seminarDescription);
@@ -78,7 +78,7 @@ public class MySeminarAdapter extends BaseAdapter {
                     i.putExtra("seminarEnd", seminarEnd);
                     i.putExtra("seminarId", seminarID);
                     context.startActivity(i);
-                }else if(seminarIntent.equals("registered")){
+                } else if (seminarIntent.equals("registered")) {
                     Intent i = new Intent(context, IndividualRegisteredActivity.class);
                     i.putExtra("seminarName", seminarName);
                     i.putExtra("seminarDescription", seminarDescription);

@@ -13,7 +13,7 @@
         <item
             android:id="@+id/nav_why_counselling"
             android:icon="@drawable/ic_baseline_info_24"
-            android:title="Why is Counselling required?"
+            android:title="Why Counselling?"
             tools:ignore="HardcodedText" />
 
 
