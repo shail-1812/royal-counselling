@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -60,6 +61,11 @@ public class FCMService extends FirebaseMessagingService {
             mChannel.setLightColor(Color.RED);
             mChannel.enableVibration(true);
             mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            AudioAttributes att = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                    .build();
+            mChannel.setSound(defaultSoundUri,att);
 
             mNotifyManager.createNotificationChannel(mChannel);
         }
@@ -67,7 +73,6 @@ public class FCMService extends FirebaseMessagingService {
         mBuilder.setContentTitle(title)
                 .setContentText(messageBody)
                 .setSmallIcon(R.drawable.logo)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo))
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setColor(Color.parseColor("#FFD600"))
