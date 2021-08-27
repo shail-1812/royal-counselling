@@ -48,7 +48,7 @@ public class FCMService extends FirebaseMessagingService {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("pushnotification", "yes");
         if(messageBody.contains("presentation")){
-            intent.putExtra("activityToDirect","PPTRequest");
+            getSharedPreferences("MYAPP", MODE_PRIVATE).edit().putString("activityToDirect", "PPTRequest").apply();
         }
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
