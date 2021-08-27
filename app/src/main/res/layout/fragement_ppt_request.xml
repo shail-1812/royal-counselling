@@ -28,13 +28,22 @@
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:text=""
+            android:id="@+id/txt_ppt_request"
+            android:textColor="#000"
+            android:layout_marginTop="20dp"/>
+
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:horizontalSpacing="5dp"
             android:numColumns="auto_fit"

@@ -29,9 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="40dp"
             android:layout_marginTop="30dp"
             android:elevation="5dp"
-
             app:cardBackgroundColor="#59A288E3"
             app:cardCornerRadius="15dp"
             tools:targetApi="lollipop">
@@ -41,8 +41,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:padding="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/tv_seminar_description"
@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Seminar Type         -   "
+                        android:text="Seminar Type - "
                         android:textColor="#000"
                         android:textSize="15sp"
                         tools:ignore="HardcodedText" />
@@ -99,7 +99,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Seminar Start         -   "
+                        android:text="Seminar Start - "
                         android:textColor="#000"
                         android:textSize="15sp"
                         tools:ignore="HardcodedText" />
@@ -133,7 +133,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Seminar End          -   "
+                        android:text="Seminar End - "
                         android:textColor="#000"
                         android:textSize="15sp"
                         tools:ignore="HardcodedText" />
@@ -195,6 +195,15 @@
             android:textAllCaps="false"
             android:textSize="20sp"
             android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="45dp"
+            android:contentDescription="footer"
+            android:src="@drawable/logo4"
             tools:ignore="HardcodedText" />
 
 

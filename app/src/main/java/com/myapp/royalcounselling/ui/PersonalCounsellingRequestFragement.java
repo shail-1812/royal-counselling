@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -16,8 +16,6 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.myapp.royalcounselling.MyPersonalRequestAdapter;
-import com.myapp.royalcounselling.MyRequestAdapter;
-import com.myapp.royalcounselling.PPTRequestBean;
 import com.myapp.royalcounselling.PersonalCounsellingBean;
 import com.myapp.royalcounselling.R;
 import com.myapp.royalcounselling.Utils;
@@ -33,6 +31,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class PersonalCounsellingRequestFragement extends Fragment {
     ArrayList<PersonalCounsellingBean> requestList = new ArrayList<PersonalCounsellingBean>();
     ListView listView;
+    TextView textView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +41,7 @@ public class PersonalCounsellingRequestFragement extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email = sharedPreferences.getString("KEY_EMAIL", "");
         String urlPost = Utils.main_url + "requestForPersonalCounsellingByUser/" + email;
+        textView = rootView.findViewById(R.id.txt_counselling_request);
 
 //        Toast.makeText(getActivity(), urlPost, Toast.LENGTH_LONG).show();
         ProgressDialog progressDialog = new ProgressDialog(getContext());
@@ -68,23 +68,22 @@ public class PersonalCounsellingRequestFragement extends Fragment {
                     requestID = (String.valueOf(object.getInt("personalCID")));
                     counsellingType = (String.valueOf(object.getString("counsellingType")));
 
-                    startTime = (String.valueOf(object.getString("startTime"))).replace('T',' ').replace('+',' ');
-                    requestTime =(String.valueOf(object.getString("requestedAt"))).replace('T',' ').replace('+',' ');
-                    String acceptString =(String.valueOf(object.getString("accepted")));
+                    startTime = (String.valueOf(object.getString("startTime"))).replace('T', ' ').replace('+', ' ');
+                    requestTime = (String.valueOf(object.getString("requestedAt"))).replace('T', ' ').replace('+', ' ');
+                    String acceptString = (String.valueOf(object.getString("accepted")));
 
-                    try{
-                        Log.w("ACCEPT STATUS", requestID+"     "+acceptString);
-                        if(acceptString.equals(null)){
+                    try {
+                        Log.w("ACCEPT STATUS", requestID + "     " + acceptString);
+                        if (acceptString.equals(null)) {
                             accepted = false;
-                        }else if(acceptString.equals("f")){
+                        } else if (acceptString.equals("f")) {
                             accepted = false;
-                        }else if(acceptString.equals("t")){
+                        } else if (acceptString.equals("t")) {
                             accepted = true;
-                        }
-                        else{
+                        } else {
                             accepted = false;
                         }
-                    }catch(Exception e){
+                    } catch (Exception e) {
                         accepted = false;
                     }
                     request.setAccepted(accepted);
@@ -95,6 +94,13 @@ public class PersonalCounsellingRequestFragement extends Fragment {
                     Log.e("requestAccepted", String.valueOf(accepted));
                     requestList.add(request);
                 }
+                if (requestList.isEmpty()) {
+                    textView.setText("No counselling request made");
+                } else {
+                    Log.e("checking", "inside else");
+                    textView.setText(" ");
+                }
+
                 listView = rootView.findViewById(R.id.list);
                 MyPersonalRequestAdapter myRequestAdapter = new MyPersonalRequestAdapter(getContext(), requestList);
                 listView.setAdapter(myRequestAdapter);

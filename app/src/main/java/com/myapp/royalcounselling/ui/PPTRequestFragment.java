@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -31,6 +31,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class PPTRequestFragment extends Fragment {
     ArrayList<PPTRequestBean> requestList = new ArrayList<PPTRequestBean>();
     ListView listView;
+    TextView textView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +41,7 @@ public class PPTRequestFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email = sharedPreferences.getString("KEY_EMAIL", "");
         String urlPost = Utils.main_url + "powerPointRequestUserWise/" + email;
+        textView = rootView.findViewById(R.id.txt_ppt_request);
 
 //        Toast.makeText(getActivity(), urlPost, Toast.LENGTH_LONG).show();
         ProgressDialog progressDialog = new ProgressDialog(getContext());
@@ -63,15 +65,15 @@ public class PPTRequestFragment extends Fragment {
                     PPTRequestBean request = new PPTRequestBean();
                     JSONObject object = jsonArray.getJSONObject(i);
                     comment = (String.valueOf(object.getString("comment")));
-                    if(comment.equals("null")){
+                    if (comment.equals("null")) {
                         comment = "No Update From Admin";
                     }
-                    queryTime = (String.valueOf(object.getString("requestAt"))).replace('T',' ').replace('+',' ');
-                    requestQuery =(String.valueOf(object.getString("requestQuery")));
-                    String queryOverString =(String.valueOf(object.getString("queryOver")));
-                    try{
+                    queryTime = (String.valueOf(object.getString("requestAt"))).replace('T', ' ').replace('+', ' ');
+                    requestQuery = (String.valueOf(object.getString("requestQuery")));
+                    String queryOverString = (String.valueOf(object.getString("queryOver")));
+                    try {
                         queryOver = Boolean.parseBoolean(queryOverString);
-                    }catch(Exception e){
+                    } catch (Exception e) {
                         queryOver = false;
                     }
                     request.setComment(comment);
@@ -79,6 +81,11 @@ public class PPTRequestFragment extends Fragment {
                     request.setQueryTime(queryTime);
                     request.setQueryOver(queryOver);
                     requestList.add(request);
+                }
+                if (requestList.isEmpty()) {
+                    textView.setText("No request made at the moment.");
+                } else {
+                    textView.setText("");
                 }
                 listView = rootView.findViewById(R.id.list);
                 MyRequestAdapter myRequestAdapter = new MyRequestAdapter(getContext(), requestList);

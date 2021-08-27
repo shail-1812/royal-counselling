@@ -32,9 +32,10 @@
             android:id="@+id/txt_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text=""
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text=""
+            android:textColor="#000"
             android:textSize="20sp" />
 
 
@@ -44,7 +45,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:horizontalSpacing="5dp"
             android:numColumns="auto_fit"
