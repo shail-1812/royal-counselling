@@ -17,7 +17,7 @@ public class MySeminarAdapter extends BaseAdapter {
     Context context;
     ArrayList<Seminar> seminarArrayList;
     String seminarIntent;
-    int[] blurImages = {R.drawable.blurred, R.drawable.seminarimage};
+    int[] blurImages = {R.drawable.seminarimage};
 
     public MySeminarAdapter(Context context, ArrayList<Seminar> seminarArrayList, String seminarIntent) {
         this.context = context;
