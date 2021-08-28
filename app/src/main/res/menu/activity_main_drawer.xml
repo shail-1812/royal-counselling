@@ -16,7 +16,6 @@
             android:title="Why Counselling?"
             tools:ignore="HardcodedText" />
 
-
         <item
             android:id="@+id/nav_view_seminar"
             android:icon="@drawable/ic_baseline_preview_24"

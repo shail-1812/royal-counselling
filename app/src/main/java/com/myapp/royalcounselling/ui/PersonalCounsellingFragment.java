@@ -76,9 +76,10 @@ public class PersonalCounsellingFragment extends Fragment {
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 String counsellingStart = (object.getString("startTime"));
                                 String counsellingId = (object.getString("timeSlotID"));
+                                String counsellingType = (object.getString("counsellingType"));
                                 String[] parts = counsellingStart.split("T");
                                 counsellingStart = parts[1];
-                                counsellingTime.add(counsellingId + ") " + counsellingStart);
+                                counsellingTime.add(counsellingId + ") " + counsellingStart + " ( " + counsellingType + " )");
                             }
 
                             ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, counsellingTime) {
