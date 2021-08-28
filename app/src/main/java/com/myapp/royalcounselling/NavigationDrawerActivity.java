@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -61,19 +62,23 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
 
         SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email1 = sharedPreferences.getString("KEY_EMAIL", "");
-        String activityToDirect = sharedPreferences.getString("activityToDirect","");
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("activityToDirect");
-
+        Intent i = getIntent();
+        String loadFragement = i.getStringExtra("loadFragment");
+        Toast.makeText(this,"Loading Fra "+loadFragement,Toast.LENGTH_SHORT).show();
         navigationView.setNavigationItemSelectedListener(this);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         Fragment fragment;
-        if(activityToDirect.equals("PPTRequest")){
-            fragment = new PPTRequestFragment();
-        }
-        else{
+        try{
+            if(loadFragement.equals("pptRequest")){
+                fragment = new PPTRequestFragment();
+            }
+            else {
+                fragment = new AboutRoyalActivity();
+            }
+        }catch(Exception e){
             fragment = new AboutRoyalActivity();
         }
+
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
 
