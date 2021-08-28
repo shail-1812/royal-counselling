@@ -63,19 +63,28 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email1 = sharedPreferences.getString("KEY_EMAIL", "");
         Intent i = getIntent();
-        String loadFragement = i.getStringExtra("loadFragment");
-        Toast.makeText(this,"Loading Fra "+loadFragement,Toast.LENGTH_SHORT).show();
+        String loadFragement;
+        try{
+            loadFragement  = i.getExtras().getString("loadFragment");
+        }catch(Exception e){
+            loadFragement = "";
+        }
+        //Toast.makeText(this,"Loading Fra "+loadFragement,Toast.LENGTH_SHORT).show();
         navigationView.setNavigationItemSelectedListener(this);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         Fragment fragment;
         try{
             if(loadFragement.equals("pptRequest")){
+                Toast.makeText(this,"PPT REquest",Toast.LENGTH_SHORT).show();
                 fragment = new PPTRequestFragment();
             }
             else {
+                Toast.makeText(this,"ELse",Toast.LENGTH_SHORT).show();
                 fragment = new AboutRoyalActivity();
             }
         }catch(Exception e){
+            Toast.makeText(this,"Exception",Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
             fragment = new AboutRoyalActivity();
         }
 

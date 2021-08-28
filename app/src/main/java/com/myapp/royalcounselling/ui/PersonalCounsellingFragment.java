@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -41,10 +42,12 @@ public class PersonalCounsellingFragment extends Fragment {
     CalendarView calendar;
     String date;
     Spinner spinner;
-    ArrayList<String> counsellingTime;
+    ArrayList<String> counsellingTimeOnline = new ArrayList<String>();
+    ArrayList<String> counsellingTimeOffline = new ArrayList<String>();
+
     Button counsellingBook;
     String strData;
-
+    RadioGroup radioGroup;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +55,7 @@ public class PersonalCounsellingFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_personal_counselling, container, false);
         spinner = rootView.findViewById(R.id.spinner_time);
         calendar = rootView.findViewById(R.id.calendar);
+        radioGroup = rootView.findViewById(R.id.radio_group);
         counsellingBook = rootView.findViewById(R.id.btn_register_personal);
         spinner.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
 
@@ -68,8 +72,12 @@ public class PersonalCounsellingFragment extends Fragment {
 
                         Log.e("TAG", "onResponse: " + response);
                         try {
-                            counsellingTime = new ArrayList<>();
-                            counsellingTime.add("Time Slots");
+                            counsellingTimeOnline.clear();
+                            counsellingTimeOffline.clear();
+
+                            counsellingTimeOnline.add("Time Slots");
+                            counsellingTimeOffline.add("Time Slots");
+
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray = jsonObject.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
@@ -79,43 +87,92 @@ public class PersonalCounsellingFragment extends Fragment {
                                 String counsellingType = (object.getString("counsellingType"));
                                 String[] parts = counsellingStart.split("T");
                                 counsellingStart = parts[1];
-                                counsellingTime.add(counsellingId + ") " + counsellingStart + " ( " + counsellingType + " )");
+                                if(counsellingType.equals("Online")){
+                                    counsellingTimeOnline.add(counsellingId + ") " + counsellingStart + " ( " + counsellingType + " )");
+                                }
+                                if(counsellingType.equals("Offline")){
+                                    counsellingTimeOffline.add(counsellingId + ") " + counsellingStart + " ( " + counsellingType + " )");
+                                }
                             }
-
-                            ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, counsellingTime) {
+                            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                                 @Override
-                                public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                                    if(checkedId == R.id.radio_online){
+                                        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, counsellingTimeOnline) {
+                                            @Override
+                                            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-                                    TextView tvData = (TextView) super.getDropDownView(position, convertView, parent);
+                                                TextView tvData = (TextView) super.getDropDownView(position, convertView, parent);
 
-                                    if (position == 0) {
-                                        tvData.setTextColor(Color.GRAY);
-                                    } else {
-                                        tvData.setTextColor(Color.WHITE);
+                                                if (position == 0) {
+                                                    tvData.setTextColor(Color.GRAY);
+                                                } else {
+                                                    tvData.setTextColor(Color.WHITE);
 
 
-                                    }
+                                                }
 
-                                    return tvData;
-                                }
-                            };
-                            spinner.setAdapter(stringArrayAdapter);
-                            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                @Override
-                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                return tvData;
+                                            }
+                                        };
+                                        spinner.setAdapter(stringArrayAdapter);
+                                        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                            @Override
+                                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                                    if (position != 0) {
-                                        strData = "";
-                                        strData = parent.getItemAtPosition(position).toString();
+                                                if (position != 0) {
+                                                    strData = "";
+                                                    strData = parent.getItemAtPosition(position).toString();
 //                                        Toast.makeText(getActivity(), strData, Toast.LENGTH_LONG).show();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onNothingSelected(AdapterView<?> parent) {
+
+                                            }
+                                        });
                                     }
-                                }
+                                    else if(checkedId == R.id.radio_offline){
+                                        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, counsellingTimeOffline) {
+                                            @Override
+                                            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-                                @Override
-                                public void onNothingSelected(AdapterView<?> parent) {
+                                                TextView tvData = (TextView) super.getDropDownView(position, convertView, parent);
 
+                                                if (position == 0) {
+                                                    tvData.setTextColor(Color.GRAY);
+                                                } else {
+                                                    tvData.setTextColor(Color.WHITE);
+
+
+                                                }
+
+                                                return tvData;
+                                            }
+                                        };
+                                        spinner.setAdapter(stringArrayAdapter);
+                                        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                            @Override
+                                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                                                if (position != 0) {
+                                                    strData = "";
+                                                    strData = parent.getItemAtPosition(position).toString();
+//                                        Toast.makeText(getActivity(), strData, Toast.LENGTH_LONG).show();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onNothingSelected(AdapterView<?> parent) {
+
+                                            }
+                                        });
+                                    }
                                 }
                             });
+
+
                             //Toast.makeText(getContext(), counsellingTime.toString(), Toast.LENGTH_LONG).show();
                             counsellingBook.setOnClickListener(v -> {
                                 String[] couID = strData.split("\\)");
