@@ -36,8 +36,7 @@ public class FCMService extends FirebaseMessagingService {
 
             Log.e("TAG",remoteMessage.getMessageId());
             sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"),remoteMessage.getData().get("activity"));
-      //      super.onMessageReceived(remoteMessage);
-            String message = remoteMessage.getData().get("message");
+          String message = remoteMessage.getData().get("message");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,38 +51,44 @@ public class FCMService extends FirebaseMessagingService {
     }
 
     private void sendNotification(String title, String messageBody,String activity) {
-        Bundle extras = new Bundle();
-        if(activity.contains("Login")){
-            extras.putString("loadFragment","pptRequest");
+        Intent intent = new Intent(getApplicationContext(), SplashScreenActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("pushnotification", "yes");
+        if(messageBody.contains("presentation")){
+            intent.putExtra("activityToDirect","PPTRequest");
         }
-        NavDeepLinkBuilder na = new NavDeepLinkBuilder(getApplicationContext());
-        na.setComponentName(NavigationDrawerActivity.class);
-        na.setDestination(R.id.nav_view_ppt_requests);
-        na.setGraph(R.navigation.mobile_navigation);
-        na.setArguments(extras);
-        PendingIntent pendingIntent = na.createPendingIntent();
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationManager mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        AudioAttributes audioAttributes = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            audioAttributes = new AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                    .build();
-        }
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel mChannel  = new NotificationChannel("Sesame", "Sesame", importance);
+            int importance = NotificationManager.IMPORTANCE_LOW;
+            NotificationChannel mChannel = new NotificationChannel("Sesame", "Sesame", importance);
             mChannel.setDescription(messageBody);
             mChannel.enableLights(true);
             mChannel.setLightColor(Color.RED);
             mChannel.enableVibration(true);
             mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-            mChannel.setSound(defaultSoundUri,audioAttributes);
+            AudioAttributes att = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                    .build();
+            mChannel.setSound(defaultSoundUri,att);
+
             mNotifyManager.createNotificationChannel(mChannel);
         }
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "Seasame");
+        mBuilder.setContentTitle(title)
+                .setContentText(messageBody)
+                .setSmallIcon(R.drawable.logo)
+                .setAutoCancel(true)
+                .setSound(defaultSoundUri)
+                .setColor(Color.parseColor("#FFD600"))
+                .setContentIntent(pendingIntent)
+                .setChannelId("Sesame")
+                .setPriority(NotificationCompat.PRIORITY_LOW);
 
-
+        mNotifyManager.notify(count, mBuilder.build());
+        count++;
     }
 
 }

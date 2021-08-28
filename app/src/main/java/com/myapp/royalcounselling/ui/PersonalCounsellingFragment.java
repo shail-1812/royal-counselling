@@ -57,7 +57,6 @@ public class PersonalCounsellingFragment extends Fragment {
         calendar = rootView.findViewById(R.id.calendar);
         radioGroup = rootView.findViewById(R.id.radio_group);
         counsellingBook = rootView.findViewById(R.id.btn_register_personal);
-        spinner.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
 
         calendar.setOnDateChangeListener(
                 (view, year, month, dayOfMonth) -> {
@@ -88,10 +87,10 @@ public class PersonalCounsellingFragment extends Fragment {
                                 String[] parts = counsellingStart.split("T");
                                 counsellingStart = parts[1];
                                 if(counsellingType.equals("Online")){
-                                    counsellingTimeOnline.add(counsellingId + ") " + counsellingStart + " ( " + counsellingType + " )");
+                                    counsellingTimeOnline.add(counsellingId + ") " + counsellingStart);
                                 }
                                 if(counsellingType.equals("Offline")){
-                                    counsellingTimeOffline.add(counsellingId + ") " + counsellingStart + " ( " + counsellingType + " )");
+                                    counsellingTimeOffline.add(counsellingId + ") " + counsellingStart);
                                 }
                             }
                             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -108,13 +107,12 @@ public class PersonalCounsellingFragment extends Fragment {
                                                     tvData.setTextColor(Color.GRAY);
                                                 } else {
                                                     tvData.setTextColor(Color.WHITE);
-
-
                                                 }
 
                                                 return tvData;
                                             }
                                         };
+                                        stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                         spinner.setAdapter(stringArrayAdapter);
                                         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                             @Override
@@ -151,6 +149,7 @@ public class PersonalCounsellingFragment extends Fragment {
                                                 return tvData;
                                             }
                                         };
+                                        stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                         spinner.setAdapter(stringArrayAdapter);
                                         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                             @Override
