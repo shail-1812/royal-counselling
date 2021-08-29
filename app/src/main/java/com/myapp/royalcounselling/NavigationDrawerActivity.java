@@ -67,7 +67,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         }catch(Exception e){
             loadFragement = "";
         }
-        Toast.makeText(this,"Loading Fra "+loadFragement,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"Loading Fra "+loadFragement,Toast.LENGTH_SHORT).show();
         navigationView.setNavigationItemSelectedListener(this);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         Fragment fragment;
@@ -81,11 +81,11 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 fragment = new PersonalCounsellingRequestFragement();
             }
             else {
-                Toast.makeText(this,"ELse",Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(this,"ELse",Toast.LENGTH_SHORT).show();
                 fragment = new AboutRoyalActivity();
             }
         }catch(Exception e){
-            Toast.makeText(this,"Exception",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Exception",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
             fragment = new AboutRoyalActivity();
         }

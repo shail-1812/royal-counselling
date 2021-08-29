@@ -62,7 +62,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email = sharedPreferences.getString("KEY_EMAIL", "");
-
+        Toast.makeText(this,"Email ID "+email,Toast.LENGTH_LONG).show();
         imageDP = findViewById(R.id.profile_image);
 
         imageDP.setOnClickListener((View.OnClickListener) v -> {
@@ -128,16 +128,12 @@ public class UserProfileActivity extends AppCompatActivity {
                 imageDP.setTag("default");
             }
         } else if (requestCode == 12) {
-            if (data != null) {
-                try {
-                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                    imageDP.setImageBitmap(bitmap);
-                    imageDP.setTag("new");
-                } catch (Exception e) {
-                    imageDP.setImageResource(R.drawable.logo);
-                    imageDP.setTag("default");
-                }
-            } else {
+            if(resultCode == RESULT_OK){
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                imageDP.setImageBitmap(imageBitmap);
+                imageDP.setTag("new");
+            }else{
                 imageDP.setImageResource(R.drawable.logo);
                 imageDP.setTag("default");
             }
@@ -178,7 +174,7 @@ public class UserProfileActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(UserProfileActivity.this);
         progressDialog.setMessage("Loading");
         progressDialog.show();
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, "https://royal-counselling-app.herokuapp.com/signUpUserProfile", response -> {
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Utils.main_url+"signUpUserProfile", response -> {
             if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }

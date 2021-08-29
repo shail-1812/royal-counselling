@@ -10,12 +10,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONObject;
 
@@ -27,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText email, password;
     Button signIn, signUp;
     TextView forgotPassword;
-
+    String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +44,20 @@ public class LoginActivity extends AppCompatActivity {
         signIn = findViewById(R.id.btn_login_sign_in);
         signUp = findViewById(R.id.btn_login_sign_up);
         forgotPassword = findViewById(R.id.tv_login_forgot);
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new  OnCompleteListener<String>(){
+
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (!task.isSuccessful()) {
+                    Log.w("TAG", "Fetching FCM registration token failed", task.getException());
+                    return;
+                }
+                else{
+                    token = task.getResult();
+                }
+            }
+        });
+        Toast.makeText(LoginActivity.this,"TOken Out : "+token,Toast.LENGTH_SHORT).show();
 
         signIn.setOnClickListener(v -> {
             String em = email.getText().toString();
@@ -46,11 +66,9 @@ public class LoginActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("KEY_EMAIL", em);
             editor.putString("KEY_PASSWORD", pass);
-            editor.putString("TOKEN", FirebaseInstanceId.getInstance().getToken());
-
-            String token = sharedPreferences.getString("TOKEN","");
-
+            editor.putString("TOKEN",token);
             editor.apply();
+
             loadData(em, pass,token);
         });
 

@@ -9,12 +9,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONObject;
 
@@ -25,7 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     EditText firstName, emailID, password, lastName, phoneNumber;
     Button signUp;
-
+    String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +43,19 @@ public class SignUpActivity extends AppCompatActivity {
         password = findViewById(R.id.edt_sign_up_password);
         phoneNumber = findViewById(R.id.edt_sign_up_phone_number);
         signUp = findViewById(R.id.btn_sign_up_register);
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new  OnCompleteListener<String>(){
 
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (!task.isSuccessful()) {
+                    Log.w("TAG", "Fetching FCM registration token failed", task.getException());
+                    return;
+                }
+                else{
+                    token = task.getResult();
+                }
+            }
+        });
         signUp.setOnClickListener(v -> {
 
             String fn = firstName.getText().toString();
@@ -56,11 +74,8 @@ public class SignUpActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("KEY_EMAIL", emailID.getText().toString());
                 editor.putString("KEY_PASSWORD", password.getText().toString());
-                editor.putString("TOKEN", FirebaseInstanceId.getInstance().getToken());
+                editor.putString("TOKEN",token);
 
-                String token = sharedPreferences.getString("TOKEN","");
-
-                editor.apply();
                 loadData(fn, ln, em, pass, phone,token);
             }
         });
