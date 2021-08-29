@@ -46,13 +46,13 @@ public class MyPersonalRequestAdapter extends BaseAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = layoutInflater.inflate(R.layout.raw_personal_counselling_request, null);
 
-        TextView requestID = convertView.findViewById(R.id.tv_personal_request_id);
+//        TextView requestID = convertView.findViewById(R.id.tv_personal_request_id);
         TextView requestTime = convertView.findViewById(R.id.tv_personal_request_time);
         TextView counsellingType = convertView.findViewById(R.id.tv_personal_counselling_type);
         TextView startTime = convertView.findViewById(R.id.tv_personal_request_start_time);
         ImageView requestStatus = convertView.findViewById(R.id.img_request_status_counselling);
 
-        requestID.setText(requestList.get(position).getPersonalCounsellingID());
+//        requestID.setText(requestList.get(position).getPersonalCounsellingID());
         requestTime.setText(requestList.get(position).getRequestTime());
         counsellingType.setText(requestList.get(position).getCounsellingType());
         startTime.setText(requestList.get(position).getStartTime());
