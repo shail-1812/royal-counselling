@@ -218,7 +218,7 @@ public class UserProfileActivity extends AppCompatActivity {
         Volley.newRequestQueue(UserProfileActivity.this).add(volleyMultipartRequest);
         Intent intent = new Intent(UserProfileActivity.this, NavigationDrawerActivity.class);
         startActivity(intent);
-
+        finish();
     }
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {

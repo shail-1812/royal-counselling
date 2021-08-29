@@ -76,11 +76,13 @@ public class LoginActivity extends AppCompatActivity {
         signUp.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
+            finish();
         });
 
         forgotPassword.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
             startActivity(intent);
+            finish();
         });
     }
 
@@ -109,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (status == 200) {
                     Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                     startActivity(intent);
+                    finish();
                 }
 
 

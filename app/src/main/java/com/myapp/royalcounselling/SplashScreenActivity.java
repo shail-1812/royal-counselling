@@ -67,6 +67,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 intent = new Intent(SplashScreenActivity.this, NavigationDrawerActivity.class);
             }
             startActivity(intent);
+            finish();
         }, time);
     }
 }

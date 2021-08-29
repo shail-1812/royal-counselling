@@ -156,6 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         VolleySingleton.getInstance(SignUpActivity.this).addToRequestQueue(stringRequest);
         startActivity(intent);
+        finish();
     }
 
 
