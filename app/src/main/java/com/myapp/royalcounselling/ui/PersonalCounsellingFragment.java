@@ -57,14 +57,18 @@ public class PersonalCounsellingFragment extends Fragment {
         calendar = rootView.findViewById(R.id.calendar);
         radioGroup = rootView.findViewById(R.id.radio_group);
         counsellingBook = rootView.findViewById(R.id.btn_register_personal);
-
+        radioGroup.setVisibility(View.GONE);
         calendar.setOnDateChangeListener(
+
                 (view, year, month, dayOfMonth) -> {
                     date
                             = dayOfMonth + "-"
                             + (month + 1) + "-" + year;
 
                     //Toast.makeText(getActivity(), date, Toast.LENGTH_LONG).show();
+                    radioGroup.setVisibility(View.VISIBLE);
+                    radioGroup.clearCheck();
+
                     String urlGet = Utils.main_url + "getAllActiveCounsellingSlots/" + date;
 
                     StringRequest stringRequest = new StringRequest(Request.Method.GET, urlGet, response -> {

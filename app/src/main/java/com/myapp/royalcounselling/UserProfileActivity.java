@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -16,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -116,9 +119,13 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 11) {
             if (data != null) {
-                Uri uri = data.getData();
-                imageDP.setImageURI(uri);
+                Uri selectedImage = data.getData();
                 imageDP.setTag("new");
+                imageDP.setImageURI(selectedImage);
+            }
+            else{
+                imageDP.setImageResource(R.drawable.logo);
+                imageDP.setTag("default");
             }
         } else if (requestCode == 12) {
             if (data != null) {

@@ -35,7 +35,7 @@ public class FCMService extends FirebaseMessagingService {
         try {
 
             Log.e("TAG",remoteMessage.getMessageId());
-            sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"),remoteMessage.getData().get("activity"));
+            sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"),remoteMessage.getData().get("click_action"));
           String message = remoteMessage.getData().get("message");
 
         } catch (Exception e) {
@@ -51,17 +51,24 @@ public class FCMService extends FirebaseMessagingService {
     }
 
     private void sendNotification(String title, String messageBody,String activity) {
-        Intent intent = new Intent(getApplicationContext(), SplashScreenActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("pushnotification", "yes");
-        if(messageBody.contains("presentation")){
+
+        Intent intent = new Intent(this, AlertDetails.class);
+        if(activity.equals("pptRequest")){
             intent.putExtra("activityToDirect","PPTRequest");
+        }else if(activity.equals("registerSeminar")){
+            intent.putExtra("activityToDirect","SeminarRegistered");
         }
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        else if(activity.equals("counsellingRequest")){
+            intent.putExtra("activityToDirect","CounsellingRequested");
+        }
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                this, 0, intent, PendingIntent.FLAG_ONE_SHOT
+        );
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationManager mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            int importance = NotificationManager.IMPORTANCE_LOW;
+            int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel mChannel = new NotificationChannel("Sesame", "Sesame", importance);
             mChannel.setDescription(messageBody);
             mChannel.enableLights(true);
@@ -85,7 +92,9 @@ public class FCMService extends FirebaseMessagingService {
                 .setColor(Color.parseColor("#FFD600"))
                 .setContentIntent(pendingIntent)
                 .setChannelId("Sesame")
-                .setPriority(NotificationCompat.PRIORITY_LOW);
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText(messageBody)).setTimeoutAfter(300000);
 
         mNotifyManager.notify(count, mBuilder.build());
         count++;

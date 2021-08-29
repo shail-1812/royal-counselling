@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONObject;
 
@@ -55,14 +56,18 @@ public class SignUpActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("KEY_EMAIL", emailID.getText().toString());
                 editor.putString("KEY_PASSWORD", password.getText().toString());
+                editor.putString("TOKEN", FirebaseInstanceId.getInstance().getToken());
+
+                String token = sharedPreferences.getString("TOKEN","");
+
                 editor.apply();
-                loadData(fn, ln, em, pass, phone);
+                loadData(fn, ln, em, pass, phone,token);
             }
         });
     }
 
 
-    private void loadData(String fn, String ln, String em, String pass, String phone) {
+    private void loadData(String fn, String ln, String em, String pass, String phone,String tokenID) {
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
@@ -104,6 +109,10 @@ public class SignUpActivity extends AppCompatActivity {
                     String str = jsonObject.optString("phoneNumber");
                     intent.putExtra("phoneNumber", str);
                 }
+                if (jsonObject.has("tokenID")) {
+                    String str = jsonObject.optString("phoneNumber");
+                    intent.putExtra("tokenID", str);
+                }
 
 
             } catch (Exception e) {
@@ -122,6 +131,7 @@ public class SignUpActivity extends AppCompatActivity {
                 map.put("emailID", em);
                 map.put("password", pass);
                 map.put("phoneNumber", phone);
+                map.put("tokenID",tokenID);
                 return map;
             }
         };

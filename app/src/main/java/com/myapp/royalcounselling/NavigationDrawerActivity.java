@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.myapp.royalcounselling.ui.AboutRoyalActivity;
 import com.myapp.royalcounselling.ui.ContactUsFragment;
 import com.myapp.royalcounselling.ui.DisplayRegisteredSeminarFragment;
@@ -56,27 +57,28 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
 
         header = navigationView.getHeaderView(0);
         email = header.findViewById(R.id.nav_email);
-//        getSupportActionBar().setHomeButtonEnabled(true);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.background);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email1 = sharedPreferences.getString("KEY_EMAIL", "");
         Intent i = getIntent();
         String loadFragement;
         try{
-            loadFragement  = i.getExtras().getString("loadFragment");
+            loadFragement  = i.getExtras().getString("activityToDirect");
         }catch(Exception e){
             loadFragement = "";
         }
-        //Toast.makeText(this,"Loading Fra "+loadFragement,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Loading Fra "+loadFragement,Toast.LENGTH_SHORT).show();
         navigationView.setNavigationItemSelectedListener(this);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         Fragment fragment;
         try{
-            if(loadFragement.equals("pptRequest")){
-                Toast.makeText(this,"PPT REquest",Toast.LENGTH_SHORT).show();
+            if(loadFragement.equals("PPTRequest")){
                 fragment = new PPTRequestFragment();
+            }
+            else if(loadFragement.equals("SeminarRegistered")){
+                fragment = new DisplayRegisteredSeminarFragment();
+            }else if(loadFragement.equals("CounsellingRequested")){
+                fragment = new PersonalCounsellingRequestFragement();
             }
             else {
                 Toast.makeText(this,"ELse",Toast.LENGTH_SHORT).show();
@@ -107,7 +109,13 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             editor.remove("KEY_NAME");
             editor.remove("KEY_EMAIL");
             editor.remove("KEY_PASSWORD");
+            editor.remove("TOKEN");
             editor.remove("KEY_CREDITS");
+            try{
+                FirebaseInstanceId.getInstance().deleteInstanceId();
+            }catch(Exception e){
+
+            }
             editor.apply();
             Intent i = new Intent(NavigationDrawerActivity.this, LoginActivity.class);
             startActivity(i);

@@ -63,7 +63,12 @@
             android:screenOrientation="portrait"
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/Theme.RoyalCounselling.NoActionBar" >
-            
+
+        </activity>
+        <activity
+            android:name=".AlertDetails"
+            android:taskAffinity="">
+
         </activity>
         <activity android:name=".SignUpActivity"
             android:screenOrientation="portrait"/>
@@ -74,7 +79,8 @@
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".SplashScreenActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:taskAffinity=".SplashScreenActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

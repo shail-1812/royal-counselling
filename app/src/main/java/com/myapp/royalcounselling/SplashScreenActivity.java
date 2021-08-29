@@ -20,6 +20,23 @@ public class SplashScreenActivity extends AppCompatActivity {
     String email, password, name;
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Intent i = getIntent();
+        try{
+            String data = i.getExtras().getString("activityToDirect");
+            Toast.makeText(this,"Data "+data,Toast.LENGTH_SHORT).show();
+            Intent n = new Intent(this,NavigationDrawerActivity.class);
+            n.putExtra("activityToDirect",data);
+            startActivity(n);
+            finish();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
@@ -29,6 +46,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         email = sharedPreferences.getString("KEY_EMAIL", "");
         password = sharedPreferences.getString("KEY_PASSWORD", "");
         int time = 3000;
+        if(getIntent().hasExtra("click_action") ){
+            Intent j = new Intent(this, AlertDetails.class);
+            j.putExtras(getIntent().getExtras());
+            startActivity(j);
+            finish();
+            return;
+        }
         new Handler().postDelayed(() -> {
             Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
             startActivity(i);

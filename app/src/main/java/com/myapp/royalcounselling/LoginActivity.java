@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONObject;
 
@@ -45,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("KEY_EMAIL", em);
             editor.putString("KEY_PASSWORD", pass);
+            editor.putString("TOKEN", FirebaseInstanceId.getInstance().getToken());
+
             String token = sharedPreferences.getString("TOKEN","");
 
             editor.apply();
