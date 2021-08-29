@@ -20,7 +20,6 @@ public class AlertDetails extends AppCompatActivity {
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.cancelAll();
             String data = i.getExtras().getString("activityToDirect");
-            Toast.makeText(this,"Data "+data,Toast.LENGTH_SHORT).show();
             Intent n = new Intent(this,NavigationDrawerActivity.class);
             n.putExtra("activityToDirect",data);
             startActivity(n);
