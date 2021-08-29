@@ -33,7 +33,7 @@
             android:fontFamily="@font/pt_sans"
             android:text="First Select Date then Mode of Counselling"
             android:textColor="#FF0000"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
@@ -42,6 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            android:layout_gravity="center"
             android:background="#5B69E3" />
 
         <LinearLayout
@@ -58,8 +59,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/pt_sans"
                 android:text="Mode Of Counselling : "
+                android:id="@+id/tv_moc"
                 android:textColor="#000"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
@@ -105,12 +107,14 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:id="@+id/spinner_time"
             android:dropDownSelector="#0A1D83"
             android:dropDownWidth="match_parent"
+            android:layout_marginHorizontal="40dp"
             android:spinnerMode="dropdown"
             android:background="@drawable/style_spinner"
-            android:tooltipText="Select floor" />
+            android:tooltipText="Select Time Slot" />
 
 
         <Button

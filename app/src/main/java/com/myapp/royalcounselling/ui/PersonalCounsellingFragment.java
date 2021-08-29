@@ -16,6 +16,7 @@ import android.widget.CalendarView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,7 +45,7 @@ public class PersonalCounsellingFragment extends Fragment {
     Spinner spinner;
     ArrayList<String> counsellingTimeOnline = new ArrayList<String>();
     ArrayList<String> counsellingTimeOffline = new ArrayList<String>();
-
+    TextView textView;
     Button counsellingBook;
     String strData;
     RadioGroup radioGroup;
@@ -55,9 +56,13 @@ public class PersonalCounsellingFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_personal_counselling, container, false);
         spinner = rootView.findViewById(R.id.spinner_time);
         calendar = rootView.findViewById(R.id.calendar);
+        textView = rootView.findViewById(R.id.tv_moc);
         radioGroup = rootView.findViewById(R.id.radio_group);
         counsellingBook = rootView.findViewById(R.id.btn_register_personal);
         radioGroup.setVisibility(View.GONE);
+        spinner.setVisibility(View.GONE);
+        counsellingBook.setVisibility(View.GONE);
+        textView.setVisibility(View.GONE);
 //        spinner.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
         calendar.setOnDateChangeListener(
 
@@ -68,7 +73,10 @@ public class PersonalCounsellingFragment extends Fragment {
 
                     //Toast.makeText(getActivity(), date, Toast.LENGTH_LONG).show();
                     radioGroup.setVisibility(View.VISIBLE);
+                    textView.setVisibility(View.VISIBLE);
+                    counsellingBook.setVisibility(View.VISIBLE);
                     radioGroup.clearCheck();
+
 
                     String urlGet = Utils.main_url + "getAllActiveCounsellingSlots/" + date;
 
@@ -101,6 +109,8 @@ public class PersonalCounsellingFragment extends Fragment {
                             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                                 @Override
                                 public void onCheckedChanged(RadioGroup group, int checkedId) {
+                                    spinner.setVisibility(View.VISIBLE);
+
                                     if (checkedId == R.id.radio_online) {
                                         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, counsellingTimeOnline) {
                                             @Override
@@ -178,18 +188,24 @@ public class PersonalCounsellingFragment extends Fragment {
 
                             //Toast.makeText(getContext(), counsellingTime.toString(), Toast.LENGTH_LONG).show();
                             counsellingBook.setOnClickListener(v -> {
-                                String[] couID = strData.split("\\)");
-                                String ID = couID[0];
-                                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MYAPP", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("counsellingID", ID);
-                                editor.putInt("flag", 1);
-                                editor.apply();
+                                try{
+                                    String[] couID = strData.split("\\)");
+                                    String ID = null;
+                                    ID = couID[0];
+                                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MYAPP", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("counsellingID", ID);
+                                    editor.putInt("flag", 1);
+                                    editor.apply();
 
-                                Fragment aboutUs = new AboutRoyalActivity();
-                                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction.replace(R.id.frame, aboutUs);
-                                fragmentTransaction.commit();
+                                    Fragment aboutUs = new AboutRoyalActivity();
+                                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                    fragmentTransaction.replace(R.id.frame, aboutUs);
+                                    fragmentTransaction.commit();
+                                }catch(Exception e){
+                                    Toast.makeText(getActivity(),"No Time Slot Selected",Toast.LENGTH_SHORT).show();
+                                }
+
                             });
 
                         } catch (JSONException e) {
