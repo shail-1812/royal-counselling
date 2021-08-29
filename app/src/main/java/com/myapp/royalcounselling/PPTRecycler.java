@@ -34,7 +34,7 @@ public class PPTRecycler extends RecyclerView.Adapter<PPTRecycler.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         try{
-            holder.thumbnail.setImageResource(R.drawable.ic_baseline_insert_drive_file_24);
+            holder.thumbnail.setImageResource(R.drawable.ic_pdf);
             holder.fileName.setText(pptList.get(position).getFileName());
         }catch (NullPointerException e){
             Log.e(TAG, "onBindViewHolder: Null Pointer: " + e.getMessage() );

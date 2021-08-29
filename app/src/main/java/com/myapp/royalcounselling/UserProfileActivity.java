@@ -62,7 +62,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
         String email = sharedPreferences.getString("KEY_EMAIL", "");
-        Toast.makeText(this,"Email ID "+email,Toast.LENGTH_LONG).show();
         imageDP = findViewById(R.id.profile_image);
 
         imageDP.setOnClickListener((View.OnClickListener) v -> {
@@ -124,7 +123,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 imageDP.setImageURI(selectedImage);
             }
             else{
-                imageDP.setImageResource(R.drawable.logo);
+                imageDP.setImageResource(R.drawable.ic_icon);
                 imageDP.setTag("default");
             }
         } else if (requestCode == 12) {
@@ -134,7 +133,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 imageDP.setImageBitmap(imageBitmap);
                 imageDP.setTag("new");
             }else{
-                imageDP.setImageResource(R.drawable.logo);
+                imageDP.setImageResource(R.drawable.ic_icon);
                 imageDP.setTag("default");
             }
         }

@@ -31,9 +31,11 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     EditText email, password;
-    Button signIn, signUp;
+    Button signIn;
+    TextView signUp;
     TextView forgotPassword;
     String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,20 +46,19 @@ public class LoginActivity extends AppCompatActivity {
         signIn = findViewById(R.id.btn_login_sign_in);
         signUp = findViewById(R.id.btn_login_sign_up);
         forgotPassword = findViewById(R.id.tv_login_forgot);
-        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new  OnCompleteListener<String>(){
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
 
             @Override
             public void onComplete(@NonNull Task<String> task) {
                 if (!task.isSuccessful()) {
                     Log.w("TAG", "Fetching FCM registration token failed", task.getException());
                     return;
-                }
-                else{
+                } else {
                     token = task.getResult();
                 }
             }
         });
-        Toast.makeText(LoginActivity.this,"TOken Out : "+token,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(LoginActivity.this,"TOken Out : "+token,Toast.LENGTH_SHORT).show();
 
         signIn.setOnClickListener(v -> {
             String em = email.getText().toString();
@@ -66,10 +67,10 @@ public class LoginActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("KEY_EMAIL", em);
             editor.putString("KEY_PASSWORD", pass);
-            editor.putString("TOKEN",token);
+            editor.putString("TOKEN", token);
             editor.apply();
 
-            loadData(em, pass,token);
+            loadData(em, pass, token);
         });
 
         signUp.setOnClickListener(v -> {
@@ -83,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void loadData(String em, String pass,String token) {
+    private void loadData(String em, String pass, String token) {
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
@@ -134,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                 Map<String, String> map = new HashMap<>();
                 map.put("emailID", em);
                 map.put("password", pass);
-                map.put("tokenID",token);
+                map.put("tokenID", token);
                 return map;
             }
 

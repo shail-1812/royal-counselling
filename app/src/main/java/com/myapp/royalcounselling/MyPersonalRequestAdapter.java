@@ -16,7 +16,7 @@ public class MyPersonalRequestAdapter extends BaseAdapter {
     Context context;
     ArrayList<PersonalCounsellingBean> requestList;
     String seminarIntent;
-    int[] blurImages = {R.drawable.circle_correct_tick_icon, R.drawable.circle_close_cross_icon};
+    int[] blurImages = {R.drawable.ic_baseline_check_circle_24, R.drawable.ic_baseline_cancel_24};
 
     public MyPersonalRequestAdapter(Context context, ArrayList<PersonalCounsellingBean> queryList) {
         this.context = context;

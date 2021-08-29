@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#A9FFFFFF"
+        android:background="@drawable/inner_bg"
+        android:padding="5dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -97,13 +98,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
-            android:src="@drawable/circle_correct_tick_icon" />
+            android:src="@drawable/ic_baseline_check_circle_24" />
     </LinearLayout>
 
-    <View
-        android:id="@+id/edt_line"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="25dp"
-        android:background="@color/white" />
 </LinearLayout>

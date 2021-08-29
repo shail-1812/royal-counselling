@@ -58,6 +58,7 @@ public class PersonalCounsellingFragment extends Fragment {
         radioGroup = rootView.findViewById(R.id.radio_group);
         counsellingBook = rootView.findViewById(R.id.btn_register_personal);
         radioGroup.setVisibility(View.GONE);
+//        spinner.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
         calendar.setOnDateChangeListener(
 
                 (view, year, month, dayOfMonth) -> {
@@ -90,17 +91,17 @@ public class PersonalCounsellingFragment extends Fragment {
                                 String counsellingType = (object.getString("counsellingType"));
                                 String[] parts = counsellingStart.split("T");
                                 counsellingStart = parts[1];
-                                if(counsellingType.equals("Online")){
+                                if (counsellingType.equals("Online")) {
                                     counsellingTimeOnline.add(counsellingId + ") " + counsellingStart);
                                 }
-                                if(counsellingType.equals("Offline")){
+                                if (counsellingType.equals("Offline")) {
                                     counsellingTimeOffline.add(counsellingId + ") " + counsellingStart);
                                 }
                             }
                             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                                 @Override
                                 public void onCheckedChanged(RadioGroup group, int checkedId) {
-                                    if(checkedId == R.id.radio_online){
+                                    if (checkedId == R.id.radio_online) {
                                         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, counsellingTimeOnline) {
                                             @Override
                                             public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -134,8 +135,7 @@ public class PersonalCounsellingFragment extends Fragment {
 
                                             }
                                         });
-                                    }
-                                    else if(checkedId == R.id.radio_offline){
+                                    } else if (checkedId == R.id.radio_offline) {
                                         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, counsellingTimeOffline) {
                                             @Override
                                             public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

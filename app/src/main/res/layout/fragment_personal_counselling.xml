@@ -24,6 +24,7 @@
             android:textSize="30sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,75 +42,76 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="#5B69E3"
-            />
+            android:background="#5B69E3" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="20dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pt_sans"
-            android:text="Mode Of Counselling : "
-            android:textColor="#000"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText"
-            />
-        <RadioGroup
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:id="@+id/radio_group"
-            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/pt_sans"
+                android:text="Mode Of Counselling : "
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
                 <RadioButton
+                    android:id="@+id/radio_online"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Online"
                     android:layout_weight="1"
+                    android:buttonTint="#000"
                     android:fontFamily="@font/pt_sans"
+                    android:text="Online"
                     android:textColor="#000"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    tools:ignore="HardcodedText"
+                    tools:ignore="HardcodedText" />
+
+                <RadioButton
+                    android:id="@+id/radio_offline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:buttonTint="#000"
-                    android:id="@+id/radio_online"
-                    />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Offline"
-                android:layout_weight="1"
-                android:fontFamily="@font/pt_sans"
-                android:textColor="#000"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText"
-                android:buttonTint="#000"
-                android:id="@+id/radio_offline"
-                />
+                    android:fontFamily="@font/pt_sans"
+                    android:text="Offline"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
 
-        </RadioGroup>
+            </RadioGroup>
         </LinearLayout>
 
+
+
         <Spinner
-            android:id="@+id/spinner_time"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/dropdown"
+            android:id="@+id/spinner_time"
+            android:dropDownSelector="#0A1D83"
+            android:dropDownWidth="match_parent"
             android:spinnerMode="dropdown"
-            />
+            android:background="@drawable/style_spinner"
+            android:tooltipText="Select floor" />
+
 
         <Button
             android:id="@+id/btn_register_personal"

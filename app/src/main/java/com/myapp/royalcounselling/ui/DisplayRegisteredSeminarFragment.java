@@ -93,7 +93,7 @@ public class DisplayRegisteredSeminarFragment extends Fragment {
                 }
                 Log.e("seminar sizes", String.valueOf(seminarsList.isEmpty()));
                 if (seminarsList.isEmpty()) {
-                    textView.setText("WTF are you waiting for register now");
+                    textView.setText("You have not registered for any seminar right now!!!");
                 } else {
                     Log.e("checking", "inside else");
                     textView.setText(" ");
@@ -109,7 +109,6 @@ public class DisplayRegisteredSeminarFragment extends Fragment {
         }, error -> Log.e("api error", "something went wrong" + error)) {
 
         };
-
 
 
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(

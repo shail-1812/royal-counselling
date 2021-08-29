@@ -2,6 +2,8 @@ package com.myapp.royalcounselling;
 
 
 import androidx.fragment.app.Fragment;
+
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -23,15 +25,15 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         Intent i = getIntent();
-        try{
+        try {
             String data = i.getExtras().getString("activityToDirect");
-            Toast.makeText(this,"Data "+data,Toast.LENGTH_SHORT).show();
-            Intent n = new Intent(this,NavigationDrawerActivity.class);
-            n.putExtra("activityToDirect",data);
+//            Toast.makeText(this, "Data " + data, Toast.LENGTH_SHORT).show();
+            Intent n = new Intent(this, NavigationDrawerActivity.class);
+            n.putExtra("activityToDirect", data);
             startActivity(n);
             finish();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -46,7 +48,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         email = sharedPreferences.getString("KEY_EMAIL", "");
         password = sharedPreferences.getString("KEY_PASSWORD", "");
         int time = 3000;
-        if(getIntent().hasExtra("click_action") ){
+        if (getIntent().hasExtra("click_action")) {
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.cancelAll();
             Intent j = new Intent(this, AlertDetails.class);
             j.putExtras(getIntent().getExtras());
             startActivity(j);
@@ -65,4 +69,4 @@ public class SplashScreenActivity extends AppCompatActivity {
             startActivity(intent);
         }, time);
     }
-    }
+}

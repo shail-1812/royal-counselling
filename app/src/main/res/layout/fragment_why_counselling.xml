@@ -39,6 +39,8 @@
                 android:fontFamily="@font/pt_sans"
                 android:lineSpacingExtra="8dp"
                 android:padding="15dp"
+                android:justificationMode="inter_word"
+                android:textStyle="bold"
                 android:text="Young minds need proper guidance that will make them potent to stand in society and make a name for themselves. Counselling not only helps them to make decisions pertaining to their professional career, but it also makes them confident and mentally prepare them for societal hardships.Teachers help children to recognize their strengths, sharpen their interests and provides them with career options to explore their dreams. In a recent news report in India Today, about 85% of students have no clue about which career options to choose for higher education."
                 android:textColor="#434343"
                 android:textSize="15sp"

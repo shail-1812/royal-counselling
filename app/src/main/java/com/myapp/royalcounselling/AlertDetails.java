@@ -1,5 +1,7 @@
 package com.myapp.royalcounselling;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -15,6 +17,8 @@ public class AlertDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent i = getIntent();
         try{
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.cancelAll();
             String data = i.getExtras().getString("activityToDirect");
             Toast.makeText(this,"Data "+data,Toast.LENGTH_SHORT).show();
             Intent n = new Intent(this,NavigationDrawerActivity.class);

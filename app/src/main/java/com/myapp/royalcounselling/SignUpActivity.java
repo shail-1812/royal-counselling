@@ -32,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText firstName, emailID, password, lastName, phoneNumber;
     Button signUp;
     String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +44,14 @@ public class SignUpActivity extends AppCompatActivity {
         password = findViewById(R.id.edt_sign_up_password);
         phoneNumber = findViewById(R.id.edt_sign_up_phone_number);
         signUp = findViewById(R.id.btn_sign_up_register);
-        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new  OnCompleteListener<String>(){
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
 
             @Override
             public void onComplete(@NonNull Task<String> task) {
                 if (!task.isSuccessful()) {
                     Log.w("TAG", "Fetching FCM registration token failed", task.getException());
                     return;
-                }
-                else{
+                } else {
                     token = task.getResult();
                 }
             }
@@ -72,17 +72,18 @@ public class SignUpActivity extends AppCompatActivity {
             } else {
                 SharedPreferences sharedPreferences = getSharedPreferences("MYAPP", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("KEY_EMAIL", emailID.getText().toString());
-                editor.putString("KEY_PASSWORD", password.getText().toString());
-                editor.putString("TOKEN",token);
-
-                loadData(fn, ln, em, pass, phone,token);
+                editor.putString("KEY_EMAIL", em);
+                editor.putString("KEY_PASSWORD", pass);
+                editor.putString("TOKEN", token);
+                editor.apply();
+//                Toast.makeText(SignUpActivity.this, em, Toast.LENGTH_SHORT).show();
+                loadData(fn, ln, em, pass, phone, token);
             }
         });
     }
 
 
-    private void loadData(String fn, String ln, String em, String pass, String phone,String tokenID) {
+    private void loadData(String fn, String ln, String em, String pass, String phone, String tokenID) {
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
@@ -146,7 +147,7 @@ public class SignUpActivity extends AppCompatActivity {
                 map.put("emailID", em);
                 map.put("password", pass);
                 map.put("phoneNumber", phone);
-                map.put("tokenID",tokenID);
+                map.put("tokenID", tokenID);
                 return map;
             }
         };

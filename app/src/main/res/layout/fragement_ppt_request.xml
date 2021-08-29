@@ -45,6 +45,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="30dp"
             android:gravity="center_horizontal"
+            android:dividerHeight="10dp"
+            android:divider="@android:color/transparent"
             android:horizontalSpacing="5dp"
             android:numColumns="auto_fit"
             android:verticalSpacing="10dp" />
