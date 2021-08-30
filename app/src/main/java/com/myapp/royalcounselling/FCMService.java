@@ -3,28 +3,19 @@ package com.myapp.royalcounselling;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
-import androidx.navigation.NavDeepLinkBuilder;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import java.util.Map;
 
 public class FCMService extends FirebaseMessagingService {
     private static final String TAG = "FCM Service";
@@ -34,9 +25,9 @@ public class FCMService extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         try {
 
-            Log.e("TAG",remoteMessage.getMessageId());
-            sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"),remoteMessage.getData().get("click_action"));
-          String message = remoteMessage.getData().get("message");
+            Log.e("TAG", remoteMessage.getMessageId());
+            sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"), remoteMessage.getData().get("click_action"));
+            String message = remoteMessage.getData().get("message");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,16 +41,15 @@ public class FCMService extends FirebaseMessagingService {
 
     }
 
-    private void sendNotification(String title, String messageBody,String activity) {
+    private void sendNotification(String title, String messageBody, String activity) {
 
         Intent intent = new Intent(this, AlertDetails.class);
-        if(activity.equals("pptRequest")){
-            intent.putExtra("activityToDirect","PPTRequest");
-        }else if(activity.equals("registerSeminar")){
-            intent.putExtra("activityToDirect","SeminarRegistered");
-        }
-        else if(activity.equals("counsellingRequest")){
-            intent.putExtra("activityToDirect","CounsellingRequested");
+        if (activity.equals("pptRequest")) {
+            intent.putExtra("activityToDirect", "PPTRequest");
+        } else if (activity.equals("registerSeminar")) {
+            intent.putExtra("activityToDirect", "SeminarRegistered");
+        } else if (activity.equals("counsellingRequest")) {
+            intent.putExtra("activityToDirect", "CounsellingRequested");
         }
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(
@@ -79,7 +69,7 @@ public class FCMService extends FirebaseMessagingService {
                     .setUsage(AudioAttributes.USAGE_NOTIFICATION)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
                     .build();
-            mChannel.setSound(defaultSoundUri,att);
+            mChannel.setSound(defaultSoundUri, att);
 
             mNotifyManager.createNotificationChannel(mChannel);
         }

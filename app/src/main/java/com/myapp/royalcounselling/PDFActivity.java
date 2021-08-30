@@ -1,16 +1,16 @@
 package com.myapp.royalcounselling;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.http.SslError;
 import android.os.Bundle;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.graphics.Bitmap;
-import android.net.http.SslError;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class PDFActivity extends AppCompatActivity {
     ProgressDialog progressDialog;

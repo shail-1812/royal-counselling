@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -62,29 +61,27 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         String email1 = sharedPreferences.getString("KEY_EMAIL", "");
         Intent i = getIntent();
         String loadFragement;
-        try{
-            loadFragement  = i.getExtras().getString("activityToDirect");
-        }catch(Exception e){
+        try {
+            loadFragement = i.getExtras().getString("activityToDirect");
+        } catch (Exception e) {
             loadFragement = "";
         }
         //Toast.makeText(this,"Loading Fra "+loadFragement,Toast.LENGTH_SHORT).show();
         navigationView.setNavigationItemSelectedListener(this);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         Fragment fragment;
-        try{
-            if(loadFragement.equals("PPTRequest")){
+        try {
+            if (loadFragement.equals("PPTRequest")) {
                 fragment = new PPTRequestFragment();
-            }
-            else if(loadFragement.equals("SeminarRegistered")){
+            } else if (loadFragement.equals("SeminarRegistered")) {
                 fragment = new DisplayRegisteredSeminarFragment();
-            }else if(loadFragement.equals("CounsellingRequested")){
+            } else if (loadFragement.equals("CounsellingRequested")) {
                 fragment = new PersonalCounsellingRequestFragement();
-            }
-            else {
-            //    Toast.makeText(this,"ELse",Toast.LENGTH_SHORT).show();
+            } else {
+                //    Toast.makeText(this,"ELse",Toast.LENGTH_SHORT).show();
                 fragment = new AboutRoyalActivity();
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             //Toast.makeText(this,"Exception",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
             fragment = new AboutRoyalActivity();
@@ -111,9 +108,9 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             editor.remove("KEY_PASSWORD");
             editor.remove("TOKEN");
             editor.remove("KEY_CREDITS");
-            try{
+            try {
                 FirebaseInstanceId.getInstance().deleteInstanceId();
-            }catch(Exception e){
+            } catch (Exception e) {
 
             }
             editor.apply();
@@ -132,7 +129,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             fragment = new PersonalCounsellingFragment();
         } else if (id == R.id.nav_view_ppt_requests) {
             fragment = new PPTRequestFragment();
-        }else if(id == R.id.nav_view_personal_counselling_request){
+        } else if (id == R.id.nav_view_personal_counselling_request) {
             fragment = new PersonalCounsellingRequestFragement();
         }
 

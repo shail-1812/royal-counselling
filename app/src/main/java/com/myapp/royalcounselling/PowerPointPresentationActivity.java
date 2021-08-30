@@ -1,9 +1,5 @@
 package com.myapp.royalcounselling;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
@@ -27,13 +27,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PowerPointPresentationActivity extends AppCompatActivity implements PPTRecycler.OnNoteListener{
+public class PowerPointPresentationActivity extends AppCompatActivity implements PPTRecycler.OnNoteListener {
 
     PPTRecycler mNoteRecyclerAdapter;
     ArrayList<PPTBean> recyclerDataArrayList = new ArrayList<PPTBean>();
     RecyclerView mRecyclerView;
-    Button searchPPT,requestPPT,btnCancel,btnSearch,btnRequest;
-    EditText searchEdt,requestEdt;
+    Button searchPPT, requestPPT, btnCancel, btnSearch, btnRequest;
+    EditText searchEdt, requestEdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +59,11 @@ public class PowerPointPresentationActivity extends AppCompatActivity implements
                     public void onClick(View v) {
                         searchEdt = (EditText) myview.findViewById(R.id.edt_search_ppt);
                         String query = searchEdt.getText().toString();
-                        if(query != null && query.trim().length()!=0){
+                        if (query != null && query.trim().length() != 0) {
                             searchPPT(query.trim());
                             alertDialog.dismiss();
-                        }
-                        else{
-                            Toast.makeText(PowerPointPresentationActivity.this,"Please enter valid Search",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(PowerPointPresentationActivity.this, "Please enter valid Search", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -91,14 +90,13 @@ public class PowerPointPresentationActivity extends AppCompatActivity implements
                 btnRequest.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        requestEdt = (EditText)myview.findViewById(R.id.edt_request_ppt);
+                        requestEdt = (EditText) myview.findViewById(R.id.edt_request_ppt);
                         String query = requestEdt.getText().toString();
-                        if(query != null && query.trim().length()!=0){
+                        if (query != null && query.trim().length() != 0) {
                             requestPPT(query.trim());
                             alertDialog.dismiss();
-                        }
-                        else{
-                            Toast.makeText(PowerPointPresentationActivity.this,"Please enter valid request",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(PowerPointPresentationActivity.this, "Please enter valid request", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -115,7 +113,7 @@ public class PowerPointPresentationActivity extends AppCompatActivity implements
         String urlPost = Utils.main_url + "getAllPowerPoint/";
 
         mRecyclerView = findViewById(R.id.recycler_view);
-        GridLayoutManager layoutManager=new GridLayoutManager(this,2);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
 
         ProgressDialog progressDialog = new ProgressDialog(PowerPointPresentationActivity.this);
         progressDialog.setMessage("Loading");
@@ -178,16 +176,19 @@ public class PowerPointPresentationActivity extends AppCompatActivity implements
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }, error -> {Log.e("api error", "something went wrong" + error);}
+        }, error -> {
+            Log.e("api error", "something went wrong" + error);
+        }
 
-        ){
+        ) {
 
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> map = new HashMap<>();
-                map.put("searchQuery",searchQuery);
+                map.put("searchQuery", searchQuery);
                 return map;
-            }};
+            }
+        };
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         VolleySingleton.getInstance(PowerPointPresentationActivity.this).addToRequestQueue(stringRequest);
     }
@@ -207,29 +208,32 @@ public class PowerPointPresentationActivity extends AppCompatActivity implements
             try {
                 progressDialog.dismiss();
                 JSONObject jsonObject = new JSONObject(response);
-                Toast.makeText(PowerPointPresentationActivity.this,jsonObject.optString("message"),Toast.LENGTH_SHORT).show();
+                Toast.makeText(PowerPointPresentationActivity.this, jsonObject.optString("message"), Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }, error -> {Log.e("api error", "something went wrong" + error);}
+        }, error -> {
+            Log.e("api error", "something went wrong" + error);
+        }
 
-        ){
+        ) {
 
             @Override
             protected Map<String, String> getParams() {
 
                 Map<String, String> map = new HashMap<>();
-                map.put("emailID",email);
-                map.put("requestQuery",query);
+                map.put("emailID", email);
+                map.put("requestQuery", query);
                 return map;
-            }};
+            }
+        };
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         VolleySingleton.getInstance(PowerPointPresentationActivity.this).addToRequestQueue(stringRequest);
 
     }
 
-    private void initRecyclerView(){
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+    private void initRecyclerView() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mNoteRecyclerAdapter = new PPTRecycler(recyclerDataArrayList, this);
         mRecyclerView.setAdapter(mNoteRecyclerAdapter);
@@ -238,7 +242,7 @@ public class PowerPointPresentationActivity extends AppCompatActivity implements
     @Override
     public void onNoteClick(int position) {
         String[] url = recyclerDataArrayList.get(position).getPptURL().split("=");
-        String u = "https://drive.google.com/file/d/"+url[2]+"/view?usp=sharing";
+        String u = "https://drive.google.com/file/d/" + url[2] + "/view?usp=sharing";
         Intent i = new Intent(PowerPointPresentationActivity.this, PDFActivity.class);
 
         i.putExtra("PDF", u);

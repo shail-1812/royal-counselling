@@ -4,9 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -18,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -121,18 +118,17 @@ public class UserProfileActivity extends AppCompatActivity {
                 Uri selectedImage = data.getData();
                 imageDP.setTag("new");
                 imageDP.setImageURI(selectedImage);
-            }
-            else{
+            } else {
                 imageDP.setImageResource(R.drawable.ic_icon);
                 imageDP.setTag("default");
             }
         } else if (requestCode == 12) {
-            if(resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                 imageDP.setImageBitmap(imageBitmap);
                 imageDP.setTag("new");
-            }else{
+            } else {
                 imageDP.setImageResource(R.drawable.ic_icon);
                 imageDP.setTag("default");
             }
@@ -173,7 +169,7 @@ public class UserProfileActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(UserProfileActivity.this);
         progressDialog.setMessage("Loading");
         progressDialog.show();
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Utils.main_url+"signUpUserProfile", response -> {
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Utils.main_url + "signUpUserProfile", response -> {
             if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }

@@ -1,14 +1,15 @@
 package com.myapp.royalcounselling;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
 public class PPTRecycler extends RecyclerView.Adapter<PPTRecycler.ViewHolder> {
@@ -33,11 +34,11 @@ public class PPTRecycler extends RecyclerView.Adapter<PPTRecycler.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        try{
+        try {
             holder.thumbnail.setImageResource(R.drawable.ic_pdf);
             holder.fileName.setText(pptList.get(position).getFileName());
-        }catch (NullPointerException e){
-            Log.e(TAG, "onBindViewHolder: Null Pointer: " + e.getMessage() );
+        } catch (NullPointerException e) {
+            Log.e(TAG, "onBindViewHolder: Null Pointer: " + e.getMessage());
         }
     }
 
@@ -68,7 +69,7 @@ public class PPTRecycler extends RecyclerView.Adapter<PPTRecycler.ViewHolder> {
         }
     }
 
-    public interface OnNoteListener{
+    public interface OnNoteListener {
         void onNoteClick(int position);
     }
 }

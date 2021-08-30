@@ -56,10 +56,9 @@ public class MyPersonalRequestAdapter extends BaseAdapter {
         requestTime.setText(requestList.get(position).getRequestTime());
         counsellingType.setText(requestList.get(position).getCounsellingType());
         startTime.setText(requestList.get(position).getStartTime());
-        if(requestList.get(position).isAccepted()){
+        if (requestList.get(position).isAccepted()) {
             requestStatus.setImageResource(blurImages[0]);
-        }
-        else{
+        } else {
             requestStatus.setImageResource(blurImages[1]);
         }
 

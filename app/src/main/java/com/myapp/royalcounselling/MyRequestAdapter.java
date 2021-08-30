@@ -2,7 +2,6 @@ package com.myapp.royalcounselling;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,10 +53,9 @@ public class MyRequestAdapter extends BaseAdapter {
         comment.setText(requestList.get(position).getComment());
         requestTime.setText(requestList.get(position).getQueryTime());
         requestQuery.setText(requestList.get(position).getRequestQuery());
-        if(requestList.get(position).isQueryOver()){
+        if (requestList.get(position).isQueryOver()) {
             requestStatus.setImageResource(blurImages[0]);
-        }
-        else{
+        } else {
             requestStatus.setImageResource(blurImages[1]);
         }
 
