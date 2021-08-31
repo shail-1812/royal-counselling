@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.myapp.royalcounselling.ui.AboutRoyalActivity;
 import com.myapp.royalcounselling.ui.ContactUsFragment;
 import com.myapp.royalcounselling.ui.DisplayRegisteredSeminarFragment;
@@ -84,7 +83,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         } catch (Exception e) {
             //Toast.makeText(this,"Exception",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
-            fragment = new AboutRoyalActivity();
+            fragment = new WhyCounsellingActivity();
         }
 
         fragmentTransaction.replace(R.id.frame, fragment);
@@ -108,11 +107,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             editor.remove("KEY_PASSWORD");
             editor.remove("TOKEN");
             editor.remove("KEY_CREDITS");
-            try {
-                FirebaseInstanceId.getInstance().deleteInstanceId();
-            } catch (Exception e) {
 
-            }
             editor.apply();
             Intent i = new Intent(NavigationDrawerActivity.this, LoginActivity.class);
             startActivity(i);
