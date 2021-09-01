@@ -92,18 +92,20 @@ public class UserProfileActivity extends AppCompatActivity {
             String gra = grade.getText().toString();
             String boa = board.getText().toString();
             String institute = institutionName.getText().toString();
-            String gen = ((RadioButton) findViewById(gender.getCheckedRadioButtonId())).getText().toString();
+            String gen = null;
             if (sta.length() < 3) {
                 Toast.makeText(UserProfileActivity.this, "Please enter state again", Toast.LENGTH_LONG).show();
             } else if (cit.length() < 3) {
                 Toast.makeText(UserProfileActivity.this, "Please enter city again", Toast.LENGTH_LONG).show();
             } else if (gra.length() < 1) {
                 Toast.makeText(UserProfileActivity.this, "Please enter board again", Toast.LENGTH_LONG).show();
-            } else if (gen.length() < 1) {
-                Toast.makeText(UserProfileActivity.this, "Please select gender", Toast.LENGTH_LONG).show();
             } else if (boa.length() < 2) {
                 Toast.makeText(UserProfileActivity.this, "Please enter board name again", Toast.LENGTH_LONG).show();
+            }
+            if (gender.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(UserProfileActivity.this, "Please select gender", Toast.LENGTH_LONG).show();
             } else {
+                gen = ((RadioButton) findViewById(gender.getCheckedRadioButtonId())).getText().toString();
                 loadData(cit, sta, gra, boa, institute, gen, email);
             }
         });

@@ -42,7 +42,7 @@
 
         <item
             android:id="@+id/nav_contact_us"
-            android:icon="@drawable/ic_baseline_local_phone_24"
+            android:icon="@drawable/ic_baseline_local_phone_24_nav"
             android:title="Contact Us"
             tools:ignore="HardcodedText" />
 
