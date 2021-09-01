@@ -42,7 +42,6 @@ public class SignUpActivity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.edt_sign_up_phone_number);
         signUp = findViewById(R.id.btn_sign_up_register);
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-
             @Override
             public void onComplete(@NonNull Task<String> task) {
                 if (!task.isSuccessful()) {
@@ -84,8 +83,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
-        progressDialog.show();
-
+        if(!progressDialog.isShowing()){
+            progressDialog.show();
+        }
         String urlPost = Utils.main_url;
         urlPost = urlPost.concat("signUpUser");
         Intent intent = new Intent(SignUpActivity.this, UserProfileActivity.class);
@@ -94,9 +94,23 @@ public class SignUpActivity extends AppCompatActivity {
 
             Log.e("TAG", "onResponse: " + response);
             try {
-
-                progressDialog.dismiss();
+                if(progressDialog.isShowing()){
+                    progressDialog.dismiss();
+                }
                 JSONObject jsonObject = new JSONObject(response);
+                if(jsonObject.has("status")){
+                    int id = jsonObject.optInt("status");
+                   
+                    if(id==-1){
+                        Intent intent1 = new Intent(SignUpActivity.this, LoginActivity.class);
+
+                        Toast.makeText(SignUpActivity.this, "Email ID Already Registered", Toast.LENGTH_LONG).show();
+                        startActivity(intent1);
+                        finish();
+                    }
+                }
+                else{
+
 
                 if (jsonObject.has("firstName")) {
                     String str = jsonObject.optString("firstName");
@@ -126,7 +140,9 @@ public class SignUpActivity extends AppCompatActivity {
                     String str = jsonObject.optString("phoneNumber");
                     intent.putExtra("tokenID", str);
                 }
-
+                startActivity(intent);
+                finish();
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -152,8 +168,6 @@ public class SignUpActivity extends AppCompatActivity {
                 0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         VolleySingleton.getInstance(SignUpActivity.this).addToRequestQueue(stringRequest);
-        startActivity(intent);
-        finish();
 
     }
 
