@@ -57,35 +57,35 @@
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:orientation="horizontal">-->
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:orientation="horizontal">-->
 
 
-<!--                    <TextView-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:fontFamily="@font/pt_sans"-->
-<!--                        android:text="Registration Start -"-->
-<!--                        android:textColor="#000"-->
-<!--                        android:textSize="13sp"-->
-<!--                        tools:ignore="HardcodedText" />-->
+                <!--                    <TextView-->
+                <!--                        android:layout_width="0dp"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_weight="1"-->
+                <!--                        android:fontFamily="@font/pt_sans"-->
+                <!--                        android:text="Registration Start -"-->
+                <!--                        android:textColor="#000"-->
+                <!--                        android:textSize="13sp"-->
+                <!--                        tools:ignore="HardcodedText" />-->
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/tv_registration_start"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:fontFamily="@font/pt_sans"-->
-<!--                        android:text=""-->
-<!--                        android:textColor="#000"-->
-<!--                        android:textSize="13sp"-->
-<!--                        tools:ignore="HardcodedText" />-->
-<!--                </LinearLayout>-->
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/tv_registration_start"-->
+                <!--                        android:layout_width="0dp"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_weight="1"-->
+                <!--                        android:fontFamily="@font/pt_sans"-->
+                <!--                        android:text=""-->
+                <!--                        android:textColor="#000"-->
+                <!--                        android:textSize="13sp"-->
+                <!--                        tools:ignore="HardcodedText" />-->
+                <!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
