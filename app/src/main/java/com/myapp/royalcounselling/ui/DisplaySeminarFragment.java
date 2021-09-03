@@ -91,7 +91,7 @@ public class DisplaySeminarFragment extends Fragment {
                     seminar.setSeminarId(seminarID);
                     seminar.setSeminarName(seminarName);
                     seminar.setSeminarRegistrationEnd(seminarRegistrationEnd);
-                    seminar.setSeminarRegistrationStart(seminarRegistrationStart);
+//                    seminar.setSeminarRegistrationStart(seminarRegistrationStart);
                     seminar.setSeminarStart(seminarStart);
                     seminar.setSeminarEnd(seminarEnd);
                     seminar.setSeminarType(seminarType);

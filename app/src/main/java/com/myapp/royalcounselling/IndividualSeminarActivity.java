@@ -46,7 +46,7 @@ public class IndividualSeminarActivity extends AppCompatActivity {
         seminarDescription = findViewById(R.id.tv_seminar_description);
         sStart = findViewById(R.id.tv_seminar_start);
         sEnd = findViewById(R.id.tv_seminar_end);
-        rStart = findViewById(R.id.tv_registration_start);
+//        rStart = findViewById(R.id.tv_registration_start);
         rEnd = findViewById(R.id.tv_registration_end);
         type = findViewById(R.id.tv_seminar_type);
         purpose = findViewById(R.id.edt_purpose);
@@ -60,7 +60,7 @@ public class IndividualSeminarActivity extends AppCompatActivity {
         seminarDescription.setText(description);
         sStart.setText(seminarStart);
         sEnd.setText(seminarEnd);
-        rStart.setText(registrationStart);
+//        rStart.setText(registrationStart);
         rEnd.setText(registrationEnd);
         type.setText(seminarType);
 
