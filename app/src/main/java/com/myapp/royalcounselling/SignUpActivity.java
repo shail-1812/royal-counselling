@@ -83,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
-        if(!progressDialog.isShowing()){
+        if (!progressDialog.isShowing()) {
             progressDialog.show();
         }
         String urlPost = Utils.main_url;
@@ -94,56 +94,54 @@ public class SignUpActivity extends AppCompatActivity {
 
             Log.e("TAG", "onResponse: " + response);
             try {
-                if(progressDialog.isShowing()){
+                if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
                 JSONObject jsonObject = new JSONObject(response);
-                if(jsonObject.has("status")){
+                if (jsonObject.has("status")) {
                     int id = jsonObject.optInt("status");
-                   
-                    if(id==-1){
-                        Intent intent1 = new Intent(SignUpActivity.this, LoginActivity.class);
 
+                    if (id == -1) {
+                        Intent intent1 = new Intent(SignUpActivity.this, LoginActivity.class);
                         Toast.makeText(SignUpActivity.this, "Email ID Already Registered", Toast.LENGTH_LONG).show();
                         startActivity(intent1);
+                    } else {
+
+
+                        if (jsonObject.has("firstName")) {
+                            String str = jsonObject.optString("firstName");
+                            intent.putExtra("firstName", str);
+                        }
+
+                        if (jsonObject.has("lastName")) {
+                            String str = jsonObject.optString("lastName");
+                            intent.putExtra("lastName", str);
+                        }
+
+                        if (jsonObject.has("email")) {
+                            String str = jsonObject.optString("email");
+                            intent.putExtra("email", str);
+                        }
+
+                        if (jsonObject.has("password")) {
+                            String str = jsonObject.optString("password");
+                            intent.putExtra("password", str);
+                        }
+
+                        if (jsonObject.has("phoneNumber")) {
+                            String str = jsonObject.optString("phoneNumber");
+                            intent.putExtra("phoneNumber", str);
+                        }
+                        if (jsonObject.has("tokenID")) {
+                            String str = jsonObject.optString("phoneNumber");
+                            intent.putExtra("tokenID", str);
+                        }
+                        startActivity(intent);
                         finish();
                     }
-                }
-                else{
 
 
-                if (jsonObject.has("firstName")) {
-                    String str = jsonObject.optString("firstName");
-                    intent.putExtra("firstName", str);
                 }
-
-                if (jsonObject.has("lastName")) {
-                    String str = jsonObject.optString("lastName");
-                    intent.putExtra("lastName", str);
-                }
-
-                if (jsonObject.has("email")) {
-                    String str = jsonObject.optString("email");
-                    intent.putExtra("email", str);
-                }
-
-                if (jsonObject.has("password")) {
-                    String str = jsonObject.optString("password");
-                    intent.putExtra("password", str);
-                }
-
-                if (jsonObject.has("phoneNumber")) {
-                    String str = jsonObject.optString("phoneNumber");
-                    intent.putExtra("phoneNumber", str);
-                }
-                if (jsonObject.has("tokenID")) {
-                    String str = jsonObject.optString("phoneNumber");
-                    intent.putExtra("tokenID", str);
-                }
-                startActivity(intent);
-                finish();
-                }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }

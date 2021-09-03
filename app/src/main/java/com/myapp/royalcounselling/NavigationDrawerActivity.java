@@ -78,7 +78,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 fragment = new PersonalCounsellingRequestFragement();
             } else {
                 //    Toast.makeText(this,"ELse",Toast.LENGTH_SHORT).show();
-                fragment = new AboutRoyalActivity();
+                fragment = new WhyCounsellingActivity();
             }
         } catch (Exception e) {
             //Toast.makeText(this,"Exception",Toast.LENGTH_SHORT).show();

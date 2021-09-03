@@ -168,15 +168,16 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void loadData(String city, String state, String grade, String board, String institutename, String gender, String emailID) {
-        final ProgressDialog progressDialog = new ProgressDialog(UserProfileActivity.this);
-        progressDialog.setMessage("Loading");
-        progressDialog.show();
+//        ProgressDialog progressDialog = new ProgressDialog(UserProfileActivity.this);
+//        progressDialog.setMessage("Loading");
+//        progressDialog.show();
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Utils.main_url + "signUpUserProfile", response -> {
-            if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
-            }
+//            if (progressDialog.isShowing()) {
+//                progressDialog.dismiss();
+//            }
             JSONObject jsonObject;
             try {
+//                progressDialog.dismiss();
                 jsonObject = new JSONObject(new String(response.data));
                 String strData = jsonObject.getString("message");
 

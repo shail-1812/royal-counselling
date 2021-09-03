@@ -21,7 +21,8 @@
             android:gravity="center"
             android:text="Seminar Name"
             android:textColor="#000"
-            android:textSize="35sp"
+            android:layout_marginHorizontal="20dp"
+            android:textSize="25sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
@@ -53,7 +54,7 @@
                     android:fontFamily="@font/pt_sans"
                     android:text="Seminar Description"
                     android:textColor="#000"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />
 
