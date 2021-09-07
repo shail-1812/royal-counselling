@@ -1,7 +1,6 @@
 package com.myapp.royalcounselling;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -43,6 +42,7 @@ public class UserProfileActivity extends AppCompatActivity {
     Button register;
     CircleImageView imageDP;
     Button btnGallery, btnCamera, btnCancel;
+    int finalStatus = 0, finalStatusGender = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,19 +93,32 @@ public class UserProfileActivity extends AppCompatActivity {
             String boa = board.getText().toString();
             String institute = institutionName.getText().toString();
             String gen = null;
-            if (sta.length() < 3) {
-                Toast.makeText(UserProfileActivity.this, "Please enter state again", Toast.LENGTH_LONG).show();
-            } else if (cit.length() < 3) {
+            if (cit.length() < 3) {
                 Toast.makeText(UserProfileActivity.this, "Please enter city again", Toast.LENGTH_LONG).show();
+                finalStatus = -1;
+            } else if (sta.length() < 3) {
+                finalStatus = -1;
+                Toast.makeText(UserProfileActivity.this, "Please enter state again", Toast.LENGTH_LONG).show();
+            } else if (institute.length() < 1) {
+                finalStatus = -1;
+                Toast.makeText(UserProfileActivity.this, "Please enter institution name again", Toast.LENGTH_LONG).show();
             } else if (gra.length() < 1) {
-                Toast.makeText(UserProfileActivity.this, "Please enter board again", Toast.LENGTH_LONG).show();
+                finalStatus = -1;
+                Toast.makeText(UserProfileActivity.this, "Please enter grade again", Toast.LENGTH_LONG).show();
             } else if (boa.length() < 2) {
-                Toast.makeText(UserProfileActivity.this, "Please enter board name again", Toast.LENGTH_LONG).show();
+                finalStatus = -1;
+                Toast.makeText(UserProfileActivity.this, "Please enter board again", Toast.LENGTH_LONG).show();
             }
             if (gender.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(UserProfileActivity.this, "Please select gender", Toast.LENGTH_LONG).show();
+                finalStatus = 0;
+                finalStatusGender = -1;
             } else {
+                finalStatus = 0;
+                finalStatusGender = 0;
                 gen = ((RadioButton) findViewById(gender.getCheckedRadioButtonId())).getText().toString();
+            }
+            if (finalStatus == 0 && finalStatusGender == 0) {
                 loadData(cit, sta, gra, boa, institute, gen, email);
             }
         });

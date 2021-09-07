@@ -138,7 +138,7 @@
             android:drawableLeft="@drawable/ic_baseline_school_24"
             android:drawablePadding="10dp"
             android:fontFamily="@font/pt_sans"
-            android:hint="Grade"
+            android:hint="Grade / Year of college"
 
             android:imeOptions="actionNext"
             android:inputType="text"
@@ -162,7 +162,7 @@
             android:drawableLeft="@drawable/ic_baseline_school_24"
             android:drawablePadding="10dp"
             android:fontFamily="@font/pt_sans"
-            android:hint="Board"
+            android:hint="Board (CBSE/Guj)"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:padding="17dp"
