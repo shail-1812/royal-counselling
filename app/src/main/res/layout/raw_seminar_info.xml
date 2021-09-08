@@ -27,7 +27,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="40dp"
@@ -46,7 +46,7 @@
 
                 <TextView
                     android:id="@+id/tv_seminar_description"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
@@ -55,6 +55,7 @@
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:justificationMode="none"
                     tools:ignore="HardcodedText" />
 
                 <!--                <LinearLayout-->
@@ -88,24 +89,27 @@
                 <!--                </LinearLayout>-->
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Registration End - "
+                        android:text="Registration End"
                         android:textColor="#000"
                         android:textSize="14sp"
                         tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/tv_registration_end"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
@@ -118,24 +122,27 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Seminar Type - "
+                        android:text="Seminar Type"
                         android:textColor="#000"
                         android:textSize="14sp"
                         tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/tv_seminar_type"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
@@ -147,18 +154,19 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Seminar Start- "
+                        android:text="Seminar Start"
                         android:textColor="#000"
                         android:textSize="14sp"
                         tools:ignore="HardcodedText" />
@@ -166,7 +174,7 @@
 
                     <TextView
                         android:id="@+id/tv_seminar_start"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
@@ -180,19 +188,20 @@
 
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
-                        android:text="Seminar End - "
+                        android:text="Seminar End"
                         android:textColor="#000"
                         android:textSize="14sp"
                         tools:ignore="HardcodedText" />
@@ -200,7 +209,7 @@
 
                     <TextView
                         android:id="@+id/tv_seminar_end"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
