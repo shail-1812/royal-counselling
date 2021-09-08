@@ -52,7 +52,7 @@
             android:fontFamily="@font/pt_sans"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Contact us on \n+91 98794 72527. \n\nOr visit us at \n\n2nd and 3rd floor,Surbhi Complex,Opp Municipal Market, Chimanlal Girdharlal Rd, Vasant Vihar, \nNavrangpura, Ahmedabad, Gujarat 380009."
+            android:text="Contact us on \n+91 93761 39635. \n\nOr visit us at \n\n2nd and 3rd floor,Surbhi Complex,Opp Municipal Market, Chimanlal Girdharlal Rd, Vasant Vihar, \nNavrangpura, Ahmedabad, Gujarat 380009."
             android:textColor="#434343"
             android:textSize="17sp"
             android:textStyle="bold"
