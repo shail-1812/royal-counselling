@@ -46,7 +46,7 @@
 
                 <TextView
                     android:id="@+id/tv_seminar_description"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
@@ -55,7 +55,6 @@
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:justificationMode="none"
                     tools:ignore="HardcodedText" />
 
                 <!--                <LinearLayout-->
@@ -92,13 +91,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
                         android:text="Registration End"
@@ -109,8 +108,8 @@
                     <TextView
                         android:id="@+id/tv_registration_end"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
                         android:text="Registration End"
@@ -125,13 +124,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="start"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
                         android:text="Seminar Type"
@@ -142,8 +141,8 @@
                     <TextView
                         android:id="@+id/tv_seminar_type"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="@font/pt_sans"
                         android:gravity="center"
                         android:text="Seminar Type"
@@ -157,8 +156,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="start"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -192,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:orientation="horizontal">
 
                     <TextView
